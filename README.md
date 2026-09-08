@@ -32,7 +32,7 @@ Sources
 | `videos/Web application walkthrough.mp4` (100 MB) | Web app walkthrough. | Same. |
 | `videos/Mobile View & Native apps.mp4` (85 MB) | Mobile/native app walkthrough. | Same, for "real devices" demo. |
 | `participant_requirements/` | Zoho share: submission guidelines (docx + extracted .md), agenda (pdf + .txt), EU regulations guide (dup), VPN guide, WiFi + support contact PNGs, `Sample Data Set.url` (points at the Drive folder). | Repo structure & mandatory docs checklist. |
-| `derived/` | Files computed from the event log (`derived/_download_from_drive.py` is the fetch helper). | Ready‑to‑use inputs for prediction/prefetch work. |
+| `derived/` | Files computed from the event log (rebuild by rerunning the profiling steps; raw files come from `scripts/download_data.py`). | Ready‑to‑use inputs for prediction/prefetch work. |
 
 ## derived/ contents
 
