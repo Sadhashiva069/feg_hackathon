@@ -1,0 +1,23 @@
+# Hackathon data: restricted player data + >100 MB files. Never commit (see README "Handling rules").
+data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Build / deps
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+
+# Harness exports may contain device identifiers; commit only summarised numbers
+progress/runs/*.json
