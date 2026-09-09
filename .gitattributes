@@ -1,0 +1,2 @@
+# The certified bundle must check out byte-for-byte on every OS: no line-ending conversion, ever.
+assets/empireofgold/** -text

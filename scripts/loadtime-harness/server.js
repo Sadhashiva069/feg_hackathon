@@ -1,7 +1,7 @@
 // Static server for the certified bundle. Serves pre-compressed .br/.gz when accepted,
 // supports Range (audio), and writes one JSON line per request to server.log.
 const http = require('http'), fs = require('fs'), path = require('path');
-const ROOT = process.argv[2] || 'd:/feg_hackathon/empireofgold';
+const ROOT = process.argv[2] || require('path').resolve(__dirname, '..', '..', 'assets', 'empireofgold');
 const PORT = +(process.argv[3] || 8787);
 const LOG = process.argv[4] || path.join(__dirname, 'server.log');
 const MIME = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.mjs':'text/javascript; charset=utf-8',

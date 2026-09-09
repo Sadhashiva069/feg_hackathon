@@ -1,12 +1,12 @@
 # Load-time harness (Challenge 3 baseline)
 
-Measures how long the untouched `empireofgold/` bundle takes to become playable, over a real WAN path,
+Measures how long the untouched `assets/empireofgold/` bundle takes to become playable, over a real WAN path,
 with network, CPU, GPU and engine milestones logged. Localhost numbers are a false positive (4.8 s);
 use the tunnel.
 
 ```
 npm install                                   # playwright-core only; uses the installed Chrome
-node server.js ../../empireofgold 8787 server.log        # static origin, serves shipped .br/.gz, logs every request
+node server.js ../../assets/empireofgold 8787 server.log        # static origin, serves shipped .br/.gz, logs every request
 cloudflared tunnel --url http://localhost:8787            # prints https://<name>.trycloudflare.com
 node run.js --url https://<name>.trycloudflare.com/ --label phone-4g --mobile --net 4g --cpu 4 --autoclick
 node analyze.js phone-4g        # runs/phone-4g/analysis.json + console summary
@@ -50,7 +50,7 @@ node ../../src/edge/server.js --port 8080 --throttle 9 --latency 170   # origin;
 cloudflared tunnel --url http://localhost:8080
 node run-lobby.js --url https://<name>.trycloudflare.com/ --label m2-phone4g-warm --scenario warm --mobile --net none --cpu 4
 node summarize-lobby.js m2-phone4g ../../progress/runs/2026-09-08-accel      # markdown table + summary json
-node manifest-from-analysis.js empireofgold 1788443825853 <phone.analysis.json> <desktop.analysis.json> ../../src/edge/manifests/empireofgold.json ../../empireofgold
+node manifest-from-analysis.js empireofgold 1788443825853 <phone.analysis.json> <desktop.analysis.json> ../../src/edge/manifests/empireofgold.json ../../assets/empireofgold
 ```
 
 Scenarios: `cold` (no service worker), `sw-cold` (worker installed, empty cache, engine drives the download at tap), `prefetched`

@@ -9,7 +9,7 @@ Participant Terms & Submission Guidelines. Any other use, distribution or follow
 subject to a separate written agreement with the team.
 
 Third-party components are used under their own licences, listed in docs/dependencies.md:
-- The game bundle in empireofgold/ is the certified third-party package provided by FEG for this
+- The game bundle in assets/empireofgold/ is the certified third-party package provided by FEG for this
   challenge. It is included byte-for-byte and unmodified (tests/bundle-hashes.json) and remains the
   property of its provider; it is not licensed by this file.
 - Vue.js (src/lobby/vendor/vue.global.prod.js) is MIT licensed, copyright Evan You and contributors.

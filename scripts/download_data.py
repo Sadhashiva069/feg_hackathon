@@ -19,7 +19,7 @@ VIDEOS = [
     ("1cO3xi1qbDf_rIPyTWKPaYrqw3w65un-9", "videos/Web application walkthrough.mp4"),
     ("1dV0h6Hbf8A30z4qJoMk3L620FHvuuKyO", "videos/Mobile View & Native apps.mp4"),
 ]
-# Game bundle zip (already extracted at repo root as empireofgold/): 1TeZPx8ZS7utmYcovF9lXfBTD9rqYJ8E9
+# Game bundle zip (already extracted in the repo as assets/empireofgold/): 1TeZPx8ZS7utmYcovF9lXfBTD9rqYJ8E9
 
 if __name__ == "__main__":
     if len(sys.argv) > 2 and sys.argv[1] == "--one":

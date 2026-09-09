@@ -65,7 +65,7 @@ Vue 3 lobby (vendored production build, no build step), a dependency-free Node 1
 - Node.js ≥ 18 (tested on 22.14), any OS. No npm install is needed to run the prototype or its tests.
 - A Chromium-based browser with WebGL 2 (Chrome 128+; Chrome on Android for the phone demo).
 - Optional, measurement only: `cloudflared`, Android platform-tools, `npm install` inside `scripts/loadtime-harness/` (playwright-core), Python 3.12 with `gdown`/`pandas`/`openpyxl` for the data scripts.
-- The certified bundle is included in the repository (`empireofgold/`, 98 MB, unmodified; `npm run verify-bundle`). The hackathon datasets are **not** included (`data/` is git-ignored) and are only needed for `npm run predict` and the impact-case analysis; `scripts/download_data.py` re-fetches them (Drive access required).
+- The certified bundle is included in the repository (`assets/empireofgold/`, 98 MB, unmodified; `npm run verify-bundle`). The hackathon datasets are **not** included (`data/` is git-ignored) and are only needed for `npm run predict` and the impact-case analysis; `scripts/download_data.py` re-fetches them (Drive access required).
 
 ## 7. Installation / setup steps
 
@@ -101,7 +101,7 @@ Local:
 
 ## 11. Demo instructions
 
-[demo/demo-flow.md](demo/demo-flow.md): a 15-minute script (setup, side-by-side race on a real phone, hot relaunch, guardrails live with `excluded-player`, `limit-player` and `?rc=1`, instrumentation, impact and compliance), with fallbacks. Screenshots of the measured runs are in `demo/screenshots/` (today at 5/11/20/26 s vs accelerator at 172 ms, plus the frame strip of the organisers' walkthrough launch), the pitch outline is `demo/presentation/pitch-outline.md`, and the charted matrix is `progress/runs/2026-09-08-after/report.html`.
+Demo video link: [demo/demo-video-link.md](demo/demo-video-link.md). Script: [demo/demo-flow.md](demo/demo-flow.md), a 15-minute script (setup, side-by-side race on a real phone, hot relaunch, guardrails live with `excluded-player`, `limit-player` and `?rc=1`, instrumentation, impact and compliance), with fallbacks. Screenshots of the measured runs are in `demo/screenshots/` (today at 5/11/20/26 s vs accelerator at 172 ms, plus the frame strip of the organisers' walkthrough launch), the pitch outline is `demo/presentation/pitch-outline.md`, and the charted matrix is `progress/runs/2026-09-08-after/report.html`.
 
 ## 12. Known limitations, assumptions and future improvements
 
@@ -124,4 +124,4 @@ Local:
 - Measurements: [progress/LOAD_TIME_PROGRESS.md](progress/LOAD_TIME_PROGRESS.md), [progress/BASELINE_LOAD_ANALYSIS.md](progress/BASELINE_LOAD_ANALYSIS.md), `progress/runs/`
 - Production edge config: [config/nginx.conf.example](config/nginx.conf.example)
 
-Repository layout: `src/edge` (origin), `src/lobby` (shell, worker, compare page), `src/predict` (replay), `tests/`, `docs/`, `demo/`, `config/`, `scripts/loadtime-harness/` (measurement), `progress/` (results), `empireofgold/` (certified bundle, read-only).
+Repository layout: `src/edge` (origin), `src/lobby` (shell, worker, compare page), `src/predict` (replay), `tests/`, `docs/`, `demo/`, `config/`, `scripts/loadtime-harness/` (measurement), `progress/` (results), `assets/empireofgold/` (certified bundle, read-only), `render.yaml` (deployment).

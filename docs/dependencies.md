@@ -12,7 +12,7 @@
 
 | Item | What it is | Handling |
 |---|---|---|
-| **Empire of Gold** game bundle (`empireofgold/`, 379 files, 98 MB) | Certified third-party package (provider SpinIQ; engine built on Pixi.js, MIT, and the Spine runtime, Esoteric Software licence, both inside the package). | Included **byte for byte, unmodified**; `tests/bundle-hashes.json` records the SHA-256 of every file as delivered and `node tests/verify-bundle.js` checks it. Served only under a versioned path by the edge; never edited, re-encoded or re-packed. Remains the property of its provider. |
+| **Empire of Gold** game bundle (`assets/empireofgold/`, 379 files, 98 MB) | Certified third-party package (provider SpinIQ; engine built on Pixi.js, MIT, and the Spine runtime, Esoteric Software licence, both inside the package). | Included **byte for byte, unmodified**; `tests/bundle-hashes.json` records the SHA-256 of every file as delivered and `node tests/verify-bundle.js` checks it. Served only under a versioned path by the edge; never edited, re-encoded or re-packed. Remains the property of its provider. |
 | Sample datasets (event logs, `CA_Player.csv`, `hackathon_casino_trends.xlsx`, walkthrough videos, compliance guide) | Anonymised hackathon sample data (hashed player ids). | **Not committed** (`data/` is git-ignored); used offline for the prediction replay and the impact case. Derived model files stay in git-ignored `var/`. `scripts/download_data.py` re-fetches them from the hackathon Drive (requires Drive access). |
 
 ## Development / measurement only (not needed to run or judge the prototype)

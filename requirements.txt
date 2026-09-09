@@ -1,0 +1,8 @@
+# Python is optional: only the data scripts use it (scripts/download_data.py, the event-log profiling in README "Data inventory").
+# The prototype, its tests and the measurement harness are Node.js only (see package.json and scripts/loadtime-harness/package.json).
+gdown>=5.2
+pandas>=2.2
+openpyxl>=3.1
+pypdf>=5.0
+python-docx>=1.1
+opencv-python>=4.10
