@@ -25,3 +25,6 @@ var/
 
 # Harness run outputs (network logs, screenshots): large, may contain device identifiers
 scripts/runs/
+
+# Local server logs
+*.log
