@@ -150,3 +150,12 @@ Generated with `node scripts/loadtime-harness/summarize-runs.js <prefix> --md`. 
 | none-warm-1 | warm | none | desk |  | 7.9 | 4.3 | 7 | 7.2 | 4.7 | warm | 6 | before | 380 | 1 | 1 | 0 |  |  |  | 3 |
 | none-warm-2 | warm | none | desk |  | 8.5 | 4.1 | 7 | 7.2 | 4.5 | warm | 5 | before | 554 | 2 | 2 | 0 |  |  |  | 4 |
 | wifi-warm-1 | warm | wifi | desk |  | 9.8 | 4.1 | 8.5 | 8.7 | 4.5 | warm | 5 | before | 367 | 1 | 1 | 0 |  |  |  | 4 |
+
+## r4- (9 Sep 09:35, Render, laptop on the 30 Mbit/s Wi-Fi profile, the primary target: files-on-disk 0.97 s, light pre-boot 0.40 s, cold via worker 10.85 s, predicted 6 ms). Across all 72 laptop pre-booted launches so far: reveal p50 9.6 ms, p95 26 ms.
+
+| label | scen | net | dev | extras | prep_s | light_s | dl_s | full_s | parked_s | path | reveal_ms | playbtn_ms | idle_ms | req | sw | MB | util | mbit | dlMB | errs |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| wifi-prefetched-1 | prefetched | wifi | desk |  | 10.5 |  | 9.6 |  |  | prefetched | 6 | 970 | 1383 | 90 | 90 | 0 |  |  |  | 3 |
+| wifi-swcold-1 | sw-cold | wifi | desk |  | 1.8 |  |  |  |  | cold-sw | 6 | 10850 | 11264 | 80 | 80 | 0 |  |  |  | 3 |
+| wifi-warm-1 | warm | wifi | desk |  | 9.3 | 4.1 | 8.4 | 8.6 | 4.5 | warm | 6 | before | 530 | 1 | 1 | 0 |  |  |  | 4 |
+| wifi-warmlight-1 | warm-light | wifi | desk |  | 9.4 | 4.3 | 8.5 |  | 4.7 | warm-light | 6 | 404 | 794 | 37 | 37 | 0 |  |  |  | 3 |
