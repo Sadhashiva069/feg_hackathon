@@ -1,0 +1,70 @@
+# Production mapping of src/edge/server.js onto the FEG-approved stack (NGINX in front of the game CDN / origin).
+# The Node edge in this repository is a sandbox stand-in for exactly these rules. Nothing here touches the
+# certified bundle: it only changes how the bytes are addressed, compressed and cached.
+#
+# Assumptions (see docs/architecture.md):
+#   - the casino front-end (lobby) and the game bundles are served from ONE origin (or the bundle path is
+#     reverse-proxied under the casino origin), so one service worker can cache both and the lobby can pre-boot
+#     the game in a same-origin frame;
+#   - each certified package is published under an immutable, versioned path /games/<id>/<version>/... ;
+#     a re-certified package gets a new version, never overwrites the old one.
+
+map $http_accept_encoding $accel_br { default 0; "~*br" 1; }
+
+server {
+    listen 443 ssl http2;            # HTTP/2 (or HTTP/3 with the quic module): many small assets, one connection
+    server_name casino.example.hr;
+
+    # ---- lobby shell + service worker: always revalidated (they change on deploy) ----
+    location = /sw.js {
+        alias /srv/casino/lobby/sw.js;
+        add_header Cache-Control "no-cache";
+        add_header Service-Worker-Allowed "/";
+        add_header X-Content-Type-Options nosniff;
+    }
+    location /lobby/ {
+        alias /srv/casino/lobby/;
+        add_header Cache-Control "no-cache";
+    }
+
+    # ---- certified bundles: byte-identical files, versioned path, immutable for a year ----
+    location ~ ^/games/(?<game>[a-z0-9_-]+)/(?<version>[A-Za-z0-9._-]+)/(?<file>.+)$ {
+        alias /srv/casino/games/$game/$version/$file;
+
+        # The bundle ships .br/.gz next to its JS; serve them as-is (brotli_static / gzip_static) and let the
+        # brotli module compress the plain text assets the provider did not (Spine JSON, .atlas, .fnt, .css).
+        brotli_static on;           # ngx_brotli
+        gzip_static   on;
+        brotli        on;
+        brotli_comp_level 5;
+        brotli_types application/json text/plain text/css text/javascript image/svg+xml font/ttf;
+        gzip          on;
+        gzip_types    application/json text/plain text/css text/javascript image/svg+xml font/ttf;
+
+        # Audio is fetched with Range requests by the engine; keep byte-ranges enabled (default) and never
+        # compress audio/images.
+        add_header Accept-Ranges bytes;
+
+        # Immutable: the path carries the version, so the browser and the service worker never revalidate.
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header X-Content-Type-Options nosniff;
+        etag on;
+
+        # Same-origin only: the bundle must not be embeddable elsewhere.
+        add_header Content-Security-Policy "frame-ancestors 'self'";
+    }
+
+    # ---- lobby data APIs (game list, per-game manifest of the critical asset set) ----
+    location /api/games        { proxy_pass http://lobby-api; add_header Cache-Control "no-cache"; }
+    location /api/manifest/    { proxy_pass http://lobby-api; add_header Cache-Control "public, max-age=60"; }
+
+    # ---- measurement beacons: go to the platform's existing consented analytics pipeline (Kafka), not to files ----
+    location = /api/events     { proxy_pass http://analytics-ingest; }
+
+    # Everything else: the lobby (Vue) entry
+    location / { root /srv/casino/lobby; try_files $uri /index.html; add_header Cache-Control "no-cache"; }
+}
+
+# The per-player "next game" prediction service is not an NGINX concern: it is a small Python service reading
+# the existing casino_game_launch event stream (Kafka) and keeping per-player state in Redis; the lobby asks it
+# for at most three candidate game ids after the player has opted in to pre-loading. See docs/architecture.md.

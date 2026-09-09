@@ -21,3 +21,7 @@ __pycache__/
 
 # Harness exports may contain device identifiers; commit only summarised numbers
 progress/runs/*.json
+var/
+
+# Harness run outputs (network logs, screenshots): large, may contain device identifiers
+scripts/runs/

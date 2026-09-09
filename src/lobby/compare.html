@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Side by side: today vs accelerated</title>
+<style>
+:root{--bg:#0f1115;--bg2:#171a21;--bg3:#1f232c;--ink:#f2f3f5;--ink2:#b8bcc6;--muted:#8a8f9a;--line:#2a2f3a;--gold:#e0aa2e;--ok:#3ec98a;--warn:#f0b35a;--bad:#ef6f66;--focus:#7fb0ec}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:12px 16px;border-bottom:1px solid var(--line)}
+header .brand{font-weight:800;color:var(--gold)} header .brand small{color:var(--muted);font-weight:500;margin-left:6px}
+header .sp{flex:1}
+header .acts{display:flex;gap:8px;flex-wrap:wrap}
+header .acts button{border:1px solid var(--line);border-radius:10px;background:var(--bg3);padding:8px 14px;min-height:40px}
+header .acts button.go{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:700}
+main{padding:12px 16px 30px;max-width:1500px;margin:0 auto}
+.legend{color:var(--ink2);font-size:13.5px;margin:0 0 12px;max-width:100ch}
+.legend b{color:var(--ink)}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:900px){.panes{grid-template-columns:1fr}}
+.pane{border:1px solid var(--line);border-radius:14px;background:var(--bg2);overflow:hidden;display:flex;flex-direction:column}
+.pane .head{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.pane .head h2{margin:0;font-size:15px;font-weight:700}
+.pane .head .sub{color:var(--muted);font-size:12.5px}
+.pane .head .sp{flex:1}
+.chip{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--ink2);background:var(--bg3);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.chip.ok{border-color:#2d6b4f;color:var(--ok)} .chip.warn{color:var(--warn)} .chip.bad{border-color:#7a3a36;color:var(--bad)}
+.timer{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:8px 14px;padding:12px 14px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;align-items:end}
+@media (max-width:520px){.timer{grid-template-columns:1fr 1fr}.timer .big{grid-column:1/-1}}
+.timer .lab{display:block;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.timer .big .v{font-size:44px;line-height:1;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.timer .big .v.txt{font-size:26px;line-height:1.2}
+.timer .v{font-size:22px;font-weight:700;line-height:1.1}
+.timer .v.run{color:var(--warn)} .timer .v.done{color:var(--ok)} .timer .v.slow{color:var(--bad)} .timer .v.idle{color:var(--muted);font-weight:500}
+.timer .tag{font-size:12px;color:var(--muted);margin-left:6px;font-weight:500}
+.frame{position:relative;background:#000;aspect-ratio:9/16;max-height:78vh;width:100%}
+@media (min-width:901px){.frame{aspect-ratio:auto;height:min(78vh,900px)}}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.log{margin-top:16px;border:1px solid var(--line);border-radius:12px;background:var(--bg2);padding:10px 14px;overflow-x:auto}
+.log h3{margin:0 0 6px;font-size:14px;color:var(--ink2)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums;min-width:640px}
+th,td{text-align:right;padding:4px 8px;border-bottom:1px solid var(--line)} th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+th{color:var(--muted);font-weight:500}
+.good{color:var(--ok)} .slow{color:var(--bad)}
+.note{color:var(--muted);font-size:12.5px}
+.warnbox{border:1px solid #7a5a2a;background:#2a2214;color:#f3d9a4;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:13.5px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">PSK Casino <small>same game · same device · same network</small></div>
+  <div class="sp"></div>
+  <div class="acts">
+    <button type="button" class="go" id="launch">Open the game on both</button>
+    <button type="button" id="back">Back to lobby on both</button>
+    <button type="button" id="reload">Reload both</button>
+  </div>
+</header>
+<main>
+  <p class="legend"><b>Left:</b> the certified bundle served the way it ships today (no edge compression, no cache headers, no service worker; every open is a cold load). <b>Right:</b> the same bundle, byte for byte, behind the edge + service worker + consented pre-load. <b>Raw</b> gain = time to the game's own Play button. <b>Perceived</b> gain = time to the first non-blank frame. Play → reels is the game's own start, measured separately.</p>
+  <div class="warnbox" id="nobase" hidden>No baseline origin configured. Start a second edge in baseline mode (<code>node src/edge/server.js --port 8081 --baseline</code>) and open <code>/compare?baseline=http://localhost:8081</code>, or pass the second tunnel's URL when demoing on a phone.</div>
+  <div class="panes">
+    <section class="pane" id="paneB" aria-labelledby="hB">
+      <div class="head"><h2 id="hB">Today</h2><span class="sub">as shipped</span><span class="sp"></span><span class="chip" id="stB">connecting…</span></div>
+      <div class="timer">
+        <div class="big"><span class="lab">tap → Play button (raw)</span><span class="v idle" id="bigB">—</span></div>
+        <div><span class="lab">first frame (perceived)</span><span class="v idle" id="revB">—</span></div>
+        <div><span class="lab">Play → reels</span><span class="v idle" id="idleB">—</span></div>
+      </div>
+      <div class="frame"><iframe id="frB" title="Lobby, served as today" allow="autoplay; fullscreen"></iframe></div>
+    </section>
+    <section class="pane" id="paneA" aria-labelledby="hA">
+      <div class="head"><h2 id="hA">With the accelerator</h2><span class="sub">edge + worker + pre-load</span><span class="sp"></span><span class="chip" id="stA">connecting…</span></div>
+      <div class="timer">
+        <div class="big"><span class="lab">tap → Play button (raw)</span><span class="v idle" id="bigA">—</span></div>
+        <div><span class="lab">first frame (perceived)</span><span class="v idle" id="revA">—</span></div>
+        <div><span class="lab">Play → reels</span><span class="v idle" id="idleA">—</span></div>
+      </div>
+      <div class="frame"><iframe id="frA" title="Lobby with the accelerator" allow="autoplay; fullscreen"></iframe></div>
+    </section>
+  </div>
+  <div class="log">
+    <h3>Launches this session <span class="note">· epoch clock shared by both frames on this device; numbers are what each lobby measured itself</span></h3>
+    <table aria-label="Launch results"><thead><tr><th>#</th><th>side</th><th>path</th><th>first frame</th><th>Play button</th><th>Play → reels</th><th>note</th></tr></thead><tbody id="rows"></tbody></table>
+  </div>
+</main>
+<script>
+(() => {
+  const Q = new URLSearchParams(location.search);
+  const player = Q.get('player') || 'demo-player', game = Q.get('game') || 'empireofgold';
+  const isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const baseOrigin = (Q.get('baseline') || (isLocal ? `${location.protocol}//${location.hostname}:8081` : '')).replace(/\/$/, '');
+  const accelExtra = Q.get('accel') || '', baseExtra = Q.get('base') || 'sw=0&prefetch=0&warm=0';
+  const $ = id => document.getElementById(id);
+  const sides = {
+    B: { fr: $('frB'), st: $('stB'), big: $('bigB'), rev: $('revB'), idle: $('idleB'), origin: baseOrigin, url: baseOrigin ? `${baseOrigin}/?player=${encodeURIComponent(player)}&${baseExtra}` : '', rec: null, state: null, n: 0 },
+    A: { fr: $('frA'), st: $('stA'), big: $('bigA'), rev: $('revA'), idle: $('idleA'), origin: location.origin, url: `${location.origin}/?player=${encodeURIComponent(player)}${accelExtra ? '&' + accelExtra : ''}`, rec: null, state: null, n: 0 }
+  };
+  if (!baseOrigin) { $('nobase').hidden = false; sides.B.st.textContent = 'no baseline origin'; sides.B.st.className = 'chip bad'; }
+  const load = s => { if (s.url) s.fr.src = s.url; };
+  load(sides.A); load(sides.B);
+  const fmt = ms => ms == null ? '—' : ms < 1000 ? `${Math.round(ms)} ms` : `${(ms / 1000).toFixed(ms < 10000 ? 2 : 1)} s`;
+  const setV = (el, ms, cls) => { el.textContent = fmt(ms); el.className = 'v ' + (cls || (ms == null ? 'idle' : ms < 500 ? 'done' : ms > 3000 ? 'slow' : 'done')); };
+  const stateText = (s, d) => {
+    if (!d) return ['connecting…', ''];
+    if (d.rg && d.rg.excluded) return ['self-excluded: blocked', 'bad']; if (d.rg && !d.rg.ageVerified) return ['age not verified: blocked', 'bad']; if (d.rg && d.rg.limitHit) return ['session limit reached', 'bad'];
+    if (s === sides.B) return [d.open ? 'game open' : 'lobby · every open is cold', d.open ? 'warn' : ''];
+    if (!d.sw) return ['accelerator off', 'bad']; if (!d.consent) return ['pre-load switched off', 'warn'];
+    const w = d.warm, p = d.prefetch;
+    if (w.state === 'parked' || w.state === 'ready') return [w.hot ? 'kept from last play' : 'pre-loaded · engine parked · Play button ready', 'ok'];
+    if (w.state === 'parked-light' || w.state === 'ready-light') return ['pre-loaded (light) · splash ready', 'ok'];
+    if (w.state === 'booting') return [p.active ? `downloading ${p.done}/${p.total} · engine booting` : 'engine booting in the background', 'warn'];
+    if (p.active) return [`downloading ${p.done}/${p.total}`, 'warn']; if (p.complete) return ['files on disk · engine not booted', 'warn'];
+    return ['idle', ''];
+  };
+  const rows = $('rows'); let n = 0;
+  const cell = v => `<td class="${v == null ? '' : v < 500 ? 'good' : v > 3000 ? 'slow' : ''}">${fmt(v)}</td>`;
+  function row(side, rec, note) { // one row per launch, created when the Play button is on screen (or the launch ends early) and updated in place afterwards
+    if (rec.tr) { rec.tr.innerHTML = rowHtml(rec.tr.dataset.n, side, rec, note); return rec.tr; }
+    const tr = document.createElement('tr'); tr.dataset.n = ++n; tr.innerHTML = rowHtml(tr.dataset.n, side, rec, note); rows.prepend(tr); rec.tr = tr; return tr;
+  }
+  const rowHtml = (num, side, rec, note) => `<td>${num}</td><td>${side === sides.B ? 'today' : 'accelerated'}</td><td>${rec.path || ''}</td>${cell(rec.reveal)}${rec.before ? '<td class="good">before the tap</td>' : cell(rec.ready)}${cell(rec.playIdle)}<td>${note || (rec.playIdle == null && rec.ready != null ? 'Play not tapped yet' : '')}</td>`;
+  function onMsg(e) {
+    const d = e.data; if (!d || d.src !== 'accel-lobby') return;
+    const s = e.source === sides.A.fr.contentWindow ? sides.A : e.source === sides.B.fr.contentWindow ? sides.B : null; if (!s) return;
+    if (d.type === 'state') { s.state = d; const [t, cls] = stateText(s, d); s.st.textContent = t; s.st.className = 'chip ' + cls; return; }
+    if (d.type === 'launch') { s.rec = { t0: d.t0, name: d.name, path: '', reveal: null, ready: null, before: false, play: null, idle: null, playIdle: null, logged: false }; setV(s.rev, null); setV(s.idle, null); s.big.className = 'v run'; return; }
+    if (d.type === 'mark' && s.rec) {
+      const r = s.rec;
+      if (d.mark === 'reveal') { r.reveal = d.t - r.t0; r.path = d.path; setV(s.rev, r.reveal); if (d.readyBeforeTap) { r.before = true; r.ready = 0; s.big.textContent = 'before the tap'; s.big.className = 'v done txt'; row(s, r); } }
+      else if (d.mark === 'ready') { r.ready = d.t - r.t0; r.path = d.path || r.path; setV(s.big, r.ready); row(s, r); }
+      else if (d.mark === 'play') r.play = d.t;
+      else if (d.mark === 'idle') { r.idle = d.t; if (r.play) { r.playIdle = d.t - r.play; setV(s.idle, r.playIdle); } else { r.playIdle = 0; setV(s.idle, 0); } row(s, r, r.play ? '' : 'already at the reels'); }
+      else if (d.mark === 'blocked') { s.big.textContent = 'blocked'; s.big.className = 'v slow txt'; row(s, r, d.reason); }
+      return;
+    }
+    if (d.type === 'rg') { if (s.rec) row(s, s.rec, d.kind === 'reality-check' ? 'reality check shown' : 'session limit reached'); return; }
+    if (d.type === 'back' && s.rec && s.rec.ready == null && !s.rec.tr) row(s, s.rec, 'left before the Play button');
+  }
+  window.addEventListener('message', onMsg);
+  const send = (s, msg) => { try { if (s.url) s.fr.contentWindow.postMessage({ src: 'accel-compare', ...msg }, '*'); } catch {} };
+  $('launch').onclick = () => { send(sides.B, { cmd: 'launch', game }); send(sides.A, { cmd: 'launch', game }); };
+  $('back').onclick = () => { send(sides.B, { cmd: 'back' }); send(sides.A, { cmd: 'back' }); };
+  $('reload').onclick = () => { for (const s of [sides.A, sides.B]) { s.rec = null; setV(s.big, null); setV(s.rev, null); setV(s.idle, null); load(s); } };
+  (function tick() { const now = performance.timeOrigin + performance.now();
+    for (const s of [sides.A, sides.B]) { const r = s.rec; if (r && r.ready == null && !r.before) { s.big.textContent = fmt(now - r.t0); s.big.className = 'v run'; } }
+    requestAnimationFrame(tick); })();
+})();
+</script>
+</body>
+</html>

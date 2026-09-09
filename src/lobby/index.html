@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0f1115">
+<title>PSK Casino sandbox lobby</title>
+<style>
+:root{--bg:#0f1115;--bg2:#171a21;--bg3:#1f232c;--ink:#f2f3f5;--ink2:#b8bcc6;--muted:#8a8f9a;--line:#2a2f3a;--gold:#e0aa2e;--gold2:#f0c150;--ok:#3ec98a;--warn:#f0b35a;--bad:#ef6f66;--focus:#7fb0ec}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+button{font:inherit;color:inherit}
+button:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.sr{position:absolute;left:-9999px}
+#lobby{position:relative;z-index:2;background:var(--bg);min-height:100vh;padding-bottom:40px}
+#lobby.behind{visibility:hidden}
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:3}
+header .brand{font-weight:800;letter-spacing:.02em;color:var(--gold)}
+header .brand small{color:var(--muted);font-weight:500;margin-left:6px}
+header .sp{flex:1}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--ink2);background:var(--bg2);white-space:nowrap}
+.chip.ok{border-color:#2d6b4f;color:var(--ok)} .chip.bad{border-color:#7a3a36;color:var(--bad)} .chip.warn{color:var(--warn)}
+main{padding:0 16px;max-width:1100px;margin:0 auto}
+h2{font-size:16px;margin:22px 0 10px;color:var(--ink2);font-weight:600;letter-spacing:.01em}
+.row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.tile{position:relative;display:block;width:100%;aspect-ratio:1/1.15;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg3);padding:0;text-align:left;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile .ph{position:absolute;inset:0;background:linear-gradient(160deg,#2b2f3a,#151821);display:flex;align-items:center;justify-content:center;color:#4b5160;font-size:34px;font-weight:800}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:13px;line-height:1.25}
+.tile .cap b{display:block;color:#fff} .tile .cap span{color:var(--ink2);font-size:11.5px}
+.tile .badge{position:absolute;top:8px;left:8px;font-size:11px;padding:2px 7px;border-radius:999px;background:rgba(15,17,21,.85);border:1px solid var(--line);color:var(--ink2)}
+.tile .badge.ready{color:var(--ok);border-color:#2d6b4f}
+.tile[disabled]{opacity:.55;cursor:not-allowed}
+.card{border:1px solid var(--line);border-radius:12px;background:var(--bg2);padding:12px 14px;margin-top:14px}
+.card h3{margin:0 0 8px;font-size:14px;color:var(--ink2);display:flex;align-items:center;gap:8px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px;font-variant-numeric:tabular-nums}
+.kv dt{color:var(--muted)} .kv dd{margin:0}
+.bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .15s linear}
+label.sw{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer}
+label.sw input{width:20px;height:20px;accent-color:var(--gold)}
+.note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums;margin-top:6px}
+.tbl th,.tbl td{text-align:right;padding:3px 6px;border-bottom:1px solid var(--line)} .tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--muted);font-weight:500}
+.good{color:var(--ok)} .slow{color:var(--bad)}
+select,input[type=text]{background:var(--bg3);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font:inherit}
+/* game stage: always in the DOM behind the lobby so a pre-booted frame keeps rendering */
+#stage{position:fixed;inset:0;z-index:1;background:#000;display:flex;flex-direction:column}
+#stage.live{z-index:5}
+#stage .bar-top{height:44px;flex:0 0 44px;display:flex;align-items:center;gap:10px;padding:0 8px;background:#0b0c10;border-bottom:1px solid var(--line);visibility:hidden}
+#stage.live .bar-top{visibility:visible}
+#stage .bar-top button{background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;min-width:44px;min-height:34px}
+#stage .bar-top .t{font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#stage .bar-top .clock{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:13px}
+#frames{position:relative;flex:1;min-height:0}
+#frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+#poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;background:#000 center/cover no-repeat;transition:opacity .25s;pointer-events:none}
+#poster.hide{opacity:0}
+#poster .shade{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.85))}
+#poster .msg{position:relative;padding:0 20px 28px;text-align:center;color:#fff;font-size:15px;max-width:420px}
+#poster .msg .st{color:var(--ink2);font-size:13px;margin-top:6px;font-variant-numeric:tabular-nums}
+#poster .bar{width:220px;margin:12px auto 0}
+@media (prefers-reduced-motion:reduce){#poster{transition:none} .bar i{transition:none}}
+.modal{position:fixed;inset:0;z-index:9;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal .box{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px;max-width:420px;width:100%}
+.modal h2{margin:0 0 8px;color:var(--ink);font-size:18px}
+.modal p{margin:0 0 8px;color:var(--ink2)}
+.modal .acts{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.modal .acts button{flex:1;min-height:44px;border-radius:10px;border:1px solid var(--line);background:var(--bg3);padding:10px 14px}
+.modal .acts button.primary{background:var(--gold);color:#1a1300;border-color:var(--gold);font-weight:700}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#22262f;border:1px solid var(--line);border-radius:10px;padding:10px 14px;z-index:8;font-size:14px;max-width:90vw}
+.banner{margin-top:14px;border:1px solid #7a3a36;background:#2a1b1a;color:#f6c9c4;border-radius:10px;padding:10px 14px;font-size:14px}
+.mini{background:none;border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin-left:6px;min-height:32px}
+details.instr{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+details.instr summary{cursor:pointer;color:var(--ink2);font-size:13.5px;font-weight:600;padding:4px 0;list-style:revert}
+details.instr summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+  <div id="lobby" :class="{behind: view.open}" :aria-hidden="view.open ? 'true' : 'false'">
+    <header>
+      <div class="brand">PSK Casino <small>sandbox lobby</small></div>
+      <div class="sp"></div>
+      <span class="chip" :class="rg.ageVerified ? 'ok' : 'bad'" :title="rg.ageVerified ? 'Age verified 18+ (register check, simulated)' : 'Not verified'">{{ rg.ageVerified ? '18+ verified' : 'not verified' }}</span>
+      <span class="chip" aria-label="Session time">{{ clock }}</span>
+    </header>
+    <main>
+      <div class="banner" role="status" v-if="rgBanner">{{ rgBanner }}</div>
+      <div class="card" role="region" aria-labelledby="accel-h">
+        <h3 id="accel-h">Faster game starts <span class="chip" :class="swReady ? 'ok' : (swNote ? 'bad' : '')">{{ swReady ? 'accelerator on' : (cfg.sw ? (swNote ? 'accelerator not active' : 'starting…') : 'accelerator off') }}</span></h3>
+        <label class="sw"><input type="checkbox" id="consent" v-model="consent" @change="onConsent"> Pre-load the game I am most likely to open next (on by default; stores up to ~25 MB on this device, switch off any time)</label>
+        <p class="note">Off by default. What is stored: the files of one predicted game on this device (up to three games kept) and the name of the last game you opened. Nothing about this is shared with anyone. Skipped on data-saver, on 2G, and whenever your account may not play. You can remove the stored files at any time.
+          <button type="button" class="mini" @click="clearCache">Clear stored files</button></p>
+        <details class="instr" :open="showInstr" @toggle="showInstr = $event.target.open">
+        <summary>Instrumentation <span class="note" style="display:inline">· measured on this device, shown for the demo</span></summary>
+        <dl class="kv" style="margin-top:10px">
+          <dt>Player</dt><dd><select v-model="player" @change="onPlayer" aria-label="Player (synthetic)"><option v-for="p in players" :value="p">{{ p }}</option></select> <span class="note" style="display:inline">synthetic IDs only</span></dd>
+          <dt>Network</dt><dd>{{ netInfo }}</dd>
+          <dt>Predicted next</dt><dd>{{ predictedName }} <span class="note" style="display:inline">({{ predictReason }})</span></dd>
+          <dt>Pre-load</dt><dd>{{ prefetchText }}<div class="bar" v-if="prefetch.total"><i :style="{width: (100*prefetch.done/prefetch.total)+'%'}"></i></div></dd>
+          <dt>Warm engine</dt><dd>{{ warmText }}</dd>
+          <dt>Cache</dt><dd>{{ cacheText }}</dd>
+        </dl>
+        <table class="tbl" v-if="launches.length" aria-label="Launch timings">
+          <thead><tr><th>Launch</th><th>path</th><th>shell</th><th>reveal</th><th>Play btn</th><th>Play→idle</th></tr></thead>
+          <tbody><tr v-for="(l,i) in launches.slice().reverse()" :key="l.t0">
+            <td>{{ l.gameName }}</td><td>{{ l.path }}</td>
+            <td>{{ ms(l.t_shell, l.t0) }}</td><td>{{ ms(l.t_reveal, l.t0) }}</td>
+            <td :class="cls(l.t_ready_rel)">{{ l.readyBeforeTap ? 'before tap' : ms(l.t_ready, l.t0) }}</td>
+            <td>{{ ms(l.t_idle, l.t_play) }}</td></tr></tbody>
+        </table>
+        </details>
+      </div>
+
+      <h2>Your games</h2>
+      <div class="row">
+        <button v-for="g in games" :key="g.id" class="tile" :data-tile="g.id" :disabled="!g.available" @pointerdown="onTileDown(g, $event)" @click="onTileClick(g, $event)" @keydown.enter.prevent="launch(g)" :aria-label="g.name + (g.available ? '' : ' (not available in this sandbox)')">
+          <img v-if="g.tile" :src="g.tile" alt="" loading="eager" decoding="async">
+          <div v-else class="ph" aria-hidden="true">{{ g.name.slice(0,1) }}</div>
+          <span class="badge ready" v-if="readyBadge(g)">ready</span>
+          <span class="badge" v-else-if="!g.available">sandbox: no bundle</span>
+          <div class="cap"><b>{{ g.name }}</b><span>{{ g.provider }}</span></div>
+        </button>
+      </div>
+      <h2>Popular</h2>
+      <div class="row">
+        <button v-for="g in others" :key="g.name" class="tile" disabled :aria-label="g.name + ' (not available in this sandbox)'">
+          <div class="ph" aria-hidden="true">{{ g.name.slice(0,1) }}</div>
+          <span class="badge">sandbox: no bundle</span>
+          <div class="cap"><b>{{ g.name }}</b><span>{{ g.provider }}</span></div>
+        </button>
+      </div>
+      <p class="note" style="margin-top:20px">Prototype for FEG Hackathon 2026 · Challenge 3. Only one certified bundle is present in this sandbox; the other tiles are names from the sample event log. No real player data is used.</p>
+    </main>
+  </div>
+
+  <div id="stage" :class="{live: view.open}" :aria-hidden="view.open ? 'false' : 'true'">
+    <div class="bar-top">
+      <button type="button" @click="back" aria-label="Back to lobby">‹ Lobby</button>
+      <div class="t">{{ view.game ? view.game.name : '' }}</div>
+      <span class="clock" aria-label="Session time">{{ clock }}</span>
+    </div>
+    <div id="frames">
+      <div id="poster" v-show="view.open" :class="{hide: view.revealed}" :style="{backgroundImage: view.poster ? 'url('+view.poster+')' : 'none'}" aria-live="polite">
+        <div class="shade"></div>
+        <div class="msg"><b>{{ view.game ? view.game.name : '' }}</b><div class="st">{{ view.status }}</div>
+          <div class="bar" v-if="view.progress !== null"><i :style="{width: view.progress+'%'}"></i></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" v-if="modal" role="dialog" aria-modal="true" :aria-labelledby="'m-h'" @keydown="modalKey">
+    <div class="box">
+      <h2 id="m-h">{{ modal.title }}</h2>
+      <p v-for="p in modal.body">{{ p }}</p>
+      <div class="acts">
+        <button type="button" v-for="a in modal.actions" :class="{primary: a.primary}" @click="a.fn" ref="modalBtn">{{ a.label }}</button>
+      </div>
+    </div>
+  </div>
+  <div class="toast" v-if="toast" role="status">{{ toast }}</div>
+</div>
+<script src="/lobby/vendor/vue.global.prod.js"></script>
+<script src="/lobby/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1500 @@
+{
+ "game": "empireofgold",
+ "version": "1788443825853",
+ "generated": "2026-09-08T11:33:59.531Z",
+ "source": [
+  "tunnel-mobile-4g-cpu4-2.analysis.json",
+  "tunnel-desktop-2.analysis.json"
+ ],
+ "note": "Paths are relative to the game root. res = resolution folder the engine picks (@1x desktop/tablet, @0.5x phone); null = resolution-independent.",
+ "dropped_missing_in_bundle": [
+  "assets/spines/@0.5x/book.png",
+  "assets/spines/@1x/book.png"
+ ],
+ "entries": [
+  {
+   "p": "index.html",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/panel/css/common.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/panel/css/footer.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/panel/css/commonGameRules.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/panel/css/gameRules.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/panel/css/history.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/index-canvas-_ynnR-4e.js",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/vendor-pixi-C8WzrnZv.js",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.37,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/core-engine-DXW-O-mj.js",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.08,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/game-empireofgold-CK6MbOiD.js",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.01,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/images/loader.webp",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.1,
+   "phase": "OTHER"
+  },
+  {
+   "p": "assets/panel/devUtils/cheatTool.css",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "BOOT"
+  },
+  {
+   "p": "assets/fonts/en/Mulish.ttf",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.09,
+   "phase": "PRELOADER"
+  },
+  {
+   "p": "assets/fonts/en/NewRocker-Regular.ttf",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.06,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/fonts/en/Oswald-Bold.ttf",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.04,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/locale/en/gameContent.json",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "OTHER"
+  },
+  {
+   "p": "assets/locale/en/commonContent.json",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "OTHER"
+  },
+  {
+   "p": "assets/images/@0.5x/brandLogo.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.01,
+   "phase": "PRELOADER"
+  },
+  {
+   "p": "assets/spines/@0.5x/EOG_Logo_Anim.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@0.5x/EOG_Logo_Anim.atlas",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@0.5x/controlPanelPrimaryAssets.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@0.5x/EOG_Logo_Anim.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 1.77,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@0.5x/controlPanelPrimaryAssets.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.02,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@0.5x/EOG_Logo_Anim_2.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.9,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@0.5x/splashBG.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@0.5x/splashAssets.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@0.5x/splashBG.jpg",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.05,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@0.5x/splashAssets.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.25,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@0.5x/loader_anim.gif",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.06,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/fonts/bmp/bitmapFont.fnt",
+   "res": null,
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/BG_king.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.29,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/BG_king.atlas",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/controlPanelAssets.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/en/commonLangAssets.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/gameElements.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/reels_frame.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/reels_frame.atlas",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/symbols.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/king_character.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.13,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/king_character.atlas",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/explosion1.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/explosion1.atlas",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/en/langImages.json",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/BG_king.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 1.67,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/reels_frame.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.88,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/king_character.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 4.54,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/explosion1.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.13,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/controlPanelAssets.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.3,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/reels_frame_2.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.21,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/en/commonLangAssets.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.02,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/fonts/bmp/bitmapFont_0.png",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.17,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/BG_king_2.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 3.35,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/symbols.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.22,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/king_character_2.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 2.37,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/king_character_3.png",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.4,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/gameElements.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.13,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@0.5x/en/langImages.webp",
+   "res": "@0.5x",
+   "tier": "critical",
+   "mb": 0.09,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/sounds/ogg/BBGM.ogg",
+   "res": null,
+   "tier": "critical",
+   "mb": 4.5,
+   "phase": "SOUNDS_EAGER"
+  },
+  {
+   "p": "assets/sounds/ogg/genericButtonSound.ogg",
+   "res": null,
+   "tier": "critical",
+   "mb": 0.02,
+   "phase": "SOUNDS_EAGER"
+  },
+  {
+   "p": "assets/images/@1x/brandLogo.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.01,
+   "phase": "PRELOADER"
+  },
+  {
+   "p": "assets/spines/@1x/EOG_Logo_Anim.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@1x/EOG_Logo_Anim.atlas",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@1x/controlPanelPrimaryAssets.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@1x/EOG_Logo_Anim.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 1.77,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/spines/@1x/EOG_Logo_Anim_2.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.9,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@1x/controlPanelPrimaryAssets.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.03,
+   "phase": "COMMON"
+  },
+  {
+   "p": "assets/images/@1x/splashBG.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@1x/splashAssets.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@1x/splashBG.jpg",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.64,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@1x/splashAssets.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.83,
+   "phase": "SPLASH"
+  },
+  {
+   "p": "assets/images/@1x/loader_anim.gif",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.06,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/BG_king.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.29,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/BG_king.atlas",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/controlPanelAssets.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/en/commonLangAssets.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/gameElements.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/reels_frame.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/reels_frame.atlas",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/symbols.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/king_character.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.13,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/king_character.atlas",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/explosion1.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/explosion1.atlas",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/en/langImages.json",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/BG_king.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 1.67,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/reels_frame.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.88,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/king_character.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 4.54,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/explosion1.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.13,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/en/commonLangAssets.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.03,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/en/langImages.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.18,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/reels_frame_2.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.21,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/BG_king_2.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 3.35,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/king_character_2.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 2.37,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/spines/@1x/king_character_3.png",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.4,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/symbols.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.67,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/controlPanelAssets.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.3,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/images/@1x/gameElements.webp",
+   "res": "@1x",
+   "tier": "critical",
+   "mb": 0.28,
+   "phase": "PRIMARY"
+  },
+  {
+   "p": "assets/sounds/ogg/ERROR POP UP.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.09,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Symbol pop up.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.04,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SLIDER SFX.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/FBGM.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 5.68,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/WIN 1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.36,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/WIN 2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.38,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/WIN 3.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.49,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/WIN 4.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 1.05,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/WIN TERMINATION.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/ROLL UP.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.21,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/ROLL UP TERMINATION.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.13,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/spin clicked.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.04,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/stop spin clicked.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.06,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/REEL DROP SFX.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.04,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/REEL SPIN.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.05,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/smallSymbolsDrop.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.02,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/REEL STOP.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Symbol Burst.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.05,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SYMBOL BURST_H1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SYMBOL BURST_H2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SYMBOL BURST_H3.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SYMBOL BURST_H4.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.09,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 3.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 4.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 5.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/NORMAL PAYLINE 6.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 3.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 4.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 5.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/TURBO PAYLINE 6.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/MULTIPLIER LAND SFX.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.07,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/MULTIPLIER TRAIL SFX.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.02,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/MULTIPLIER TOTAL WIN.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.05,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 3.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 4.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 5.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Scatter Land 6.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.08,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SCATTER WIN 1.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/SCATTER WIN 2.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/INTRO.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.13,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/OUTRO.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.1,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Ante bet button.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.03,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/sounds/ogg/Buy bonus button.ogg",
+   "res": null,
+   "tier": "secondary",
+   "mb": 0.02,
+   "phase": "SOUNDS_LAZY"
+  },
+  {
+   "p": "assets/spines/@0.5x/bigwins.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.09,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/bigwins.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/scatter.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.07,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/scatter.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/chest.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.02,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/chest.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/book.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/book.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/shield.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.05,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/shield.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/cup.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/cup.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_1.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_1.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_2.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_2.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_3.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_3.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_4.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_4.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_5.json",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_5.atlas",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/bigwins.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 2.99,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/scatter.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.23,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/chest.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.26,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/shield.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.25,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/cup.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 1.34,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_1.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.22,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_2.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.22,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_3.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.23,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_4.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.21,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/low_5.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 0.24,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@0.5x/bigwins_2.png",
+   "res": "@0.5x",
+   "tier": "secondary",
+   "mb": 1.26,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/bigwins.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.09,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/bigwins.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/scatter.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.07,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/scatter.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/chest.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.02,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/chest.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/book.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/book.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/shield.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.05,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/shield.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/cup.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/cup.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_1.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_1.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_2.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_2.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_3.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_3.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_4.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_4.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_5.json",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.01,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_5.atlas",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/bigwins.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 2.99,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/scatter.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.23,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/chest.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.26,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/shield.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.25,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/cup.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 1.34,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_1.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.22,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_2.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.22,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_3.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.23,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_4.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.21,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/low_5.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 0.24,
+   "phase": "SECONDARY"
+  },
+  {
+   "p": "assets/spines/@1x/bigwins_2.png",
+   "res": "@1x",
+   "tier": "secondary",
+   "mb": 1.26,
+   "phase": "SECONDARY"
+  }
+ ]
+}

@@ -1,0 +1,355 @@
+<title>Empire of Gold Before and After</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f6f6f3; --bg-2:#ecece7; --ink:#15181d; --ink-2:#4b5059; --muted:#7a7f88; --line:#d6d8d2; --line-2:#e6e7e2;
+  --accent:#8a6508; --accent-2:#c48f13; --accent-soft:#f3e7c4;
+  --crit:#b3352e; --crit-soft:#f7dedb; --good:#1f7a4d;
+  --before:#6da7ec; --after:#1c5cab;
+  --o1:#6da7ec; --o2:#3987e5; --o3:#256abf; --o4:#184f95; --o5:#0d366b;
+  --tip-bg:#15181d; --tip-ink:#f6f6f3;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#15171b; --bg-2:#1e2126; --ink:#ececea; --ink-2:#bfc2c8; --muted:#8d9199; --line:#33363d; --line-2:#272a30;
+    --accent:#e0aa2e; --accent-2:#f0c150; --accent-soft:#3a2f12;
+    --crit:#ef7b73; --crit-soft:#3d1f1c; --good:#5fcf95;
+    --before:#4d92e6; --after:#1e5fb0;
+    --o1:#cde2fb; --o2:#9ec5f4; --o3:#6da7ec; --o4:#3987e5; --o5:#1c5cab;
+    --tip-bg:#ececea; --tip-ink:#15171b;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#15171b; --bg-2:#1e2126; --ink:#ececea; --ink-2:#bfc2c8; --muted:#8d9199; --line:#33363d; --line-2:#272a30;
+  --accent:#e0aa2e; --accent-2:#f0c150; --accent-soft:#3a2f12;
+  --crit:#ef7b73; --crit-soft:#3d1f1c; --good:#5fcf95;
+  --before:#4d92e6; --after:#1e5fb0;
+  --o1:#cde2fb; --o2:#9ec5f4; --o3:#6da7ec; --o4:#3987e5; --o5:#1c5cab;
+  --tip-bg:#ececea; --tip-ink:#15171b;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:40px 28px 80px}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",system-ui,sans-serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,54px);font-weight:800;line-height:1.02;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:700;letter-spacing:-.01em;margin:64px 0 14px;padding-top:22px;border-top:1px solid var(--line)}
+h3{font-size:17px;font-weight:700;margin:26px 0 8px}
+p{max-width:68ch;margin:0 0 14px}
+.lede{font-size:18px;line-height:1.5;color:var(--ink-2);max-width:64ch}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.mono,code,td.num,th.num{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+code{font-size:.9em;background:var(--bg-2);padding:1px 5px;border-radius:3px}
+.verdict{margin:28px 0 8px;padding:20px 22px;border-left:4px solid var(--accent);background:var(--bg-2)}
+.verdict p{max-width:none;margin:0 0 8px;font-size:17px} .verdict p:last-child{margin:0}
+.verdict strong{color:var(--accent)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0 10px}
+.tile{background:var(--bg);padding:16px 18px 14px;display:flex;flex-direction:column;gap:4px}
+.tile .k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.tile .v{font-family:"Bricolage Grotesque",sans-serif;font-size:36px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.tile .v small{font-size:15px;font-weight:600;color:var(--ink-2);margin-left:4px}
+.tile .v .was{font-size:15px;font-weight:500;color:var(--muted);text-decoration:line-through;margin-right:8px;letter-spacing:0}
+.tile .d{font-size:13px;color:var(--ink-2);line-height:1.35}
+figure{margin:18px 0 8px}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px;max-width:80ch}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:"IBM Plex Sans",system-ui,sans-serif;fill:var(--ink-2);font-size:11px}
+svg .mono{font-family:"IBM Plex Mono",monospace}
+svg .grid{stroke:var(--line-2);stroke-width:1}
+svg .axis{stroke:var(--line);stroke-width:1}
+svg .target{stroke:var(--ink);stroke-width:1;opacity:.6}
+svg .lbl{fill:var(--ink);font-size:11px}
+svg .lbl.b{font-weight:600}
+svg .rowlbl{fill:var(--ink);font-size:12px;font-weight:500}
+svg .sub{fill:var(--muted);font-size:10.5px}
+svg .conn{stroke:var(--line);stroke-width:2}
+svg .dot-before{fill:var(--before);stroke:var(--bg);stroke-width:2}
+svg .dot-after{fill:var(--after);stroke:var(--bg);stroke-width:2}
+svg .bar-ctx{fill:var(--before)} svg .bar-emph{fill:var(--after)}
+svg .hit{fill:transparent;pointer-events:all}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.legend i.sq{border-radius:2px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line-2);text-align:left;vertical-align:top}
+th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--accent-soft)}
+tr.grp td{background:var(--bg-2);font-weight:600;color:var(--ink)}
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;padding:2px 7px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);white-space:nowrap}
+.pill.after{border-color:var(--after);color:var(--ink)}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0 6px}
+.frame{background:var(--bg-2);border:1px solid var(--line);padding:6px}
+.frame img{width:100%;display:block;border:1px solid var(--line-2)}
+.frame .t{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink);margin:6px 0 0}
+.frame .l{font-size:12px;color:var(--ink-2);line-height:1.3}
+.phonestrip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.phonestrip .frame{flex:0 0 120px}
+.callout{border:1px solid var(--line);padding:14px 18px;margin:14px 0;font-size:14px;max-width:80ch;background:var(--bg-2)}
+.callout.warn{border-color:var(--crit);background:var(--crit-soft)}
+ul.plain{padding-left:18px;max-width:74ch}
+ul.plain li{margin-bottom:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.tip{position:fixed;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);font-size:12px;padding:8px 10px;border-radius:4px;max-width:340px;z-index:10;line-height:1.4;font-family:"IBM Plex Mono",monospace;white-space:pre}
+.tip[hidden]{display:none}
+.foot{margin-top:60px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+.levers{counter-reset:c;list-style:none;padding:0;margin:0}
+.levers li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line-2)}
+.levers li:first-child{border-top:0}
+.levers .where{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--accent);padding-top:3px}
+.levers p{margin:0 0 4px;max-width:74ch}
+.levers .ev{font-size:13px;color:var(--ink-2);max-width:74ch}
+.ok{color:var(--good);font-weight:600}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">FEG Hackathon 2026 · Challenge 3 · before / after measurement · 8 Sep 2026</div>
+  <h1 id="h1"></h1>
+  <p class="lede" style="margin-top:16px">Same certified bundle, byte for byte. Same Cloudflare tunnel, same Chrome, same link profiles and the same engine milestones as the <a id="baselink" href="#">baseline report</a>. What changed is everything around the bundle: a lobby that pre-loads and pre-boots the game the player is most likely to open next, a service worker that owns the cache, an edge that serves compressed immutable files, and a prediction model fitted on the sample event log.</p>
+
+  <div class="verdict" id="verdict"></div>
+  <div class="tiles" id="tiles"></div>
+  <figcaption id="tilecap"></figcaption>
+
+  <h2>1. Before and after, configuration by configuration</h2>
+  <p>Every row is one of the baseline report's configurations, re-run through the tunnel with the accelerated lobby. <b>Before</b> is the time from opening the game URL to the Play button (engine event <code>PRIMARY_ASSETS_LOADED</code>). <b>After</b> is the time from the tap on the lobby tile (<code>pointerdown</code>) to the game frame being on screen with that same Play button already on it; the game was pre-loaded and pre-booted while the player was in the lobby. The axis is logarithmic because the two sides differ by three orders of magnitude.</p>
+  <figure><div class="scroll" id="dumbbell"></div><div class="legend" id="db-legend"></div><figcaption>Each dot is one run. Connector joins the medians. The 500 ms line is the challenge target. Hover a dot for the run.</figcaption></figure>
+  <div class="scroll"><table id="cfgtable"></table></div>
+  <figcaption>Prep = seconds between opening the lobby (consent given) and the game being parked, ready, behind the lobby: the cost that was moved off the tap. On a revisit the download is skipped and only the engine boot remains. Play→reels = tap on the game's own Play button to the reels (engine event <code>IDLE_STATE_ENTRY</code>). Requests after the tap are served by the service worker; the origin sees no bytes.</figcaption>
+
+  <h2>2. What a tap can find, on the emulated 4G phone</h2>
+  <p>The sub-500 ms number depends on what state the predicted game is in when the tile is tapped. All six states were measured on the same emulated phone, same link, same run day. Only the two darker bars are the accelerated steady state; the others are what a prediction miss, a low-memory device or a first visit look like.</p>
+  <figure><div id="states"></div><figcaption>Tap to Play button per state. The cold row through the accelerated lobby matches the baseline's cold runs (24.7–26.5 s), which shows the lobby adds no overhead when it cannot help.</figcaption></figure>
+
+  <h2>3. p50 and p95 of the predicted path</h2>
+  <p>Twenty independent cold-browser sessions on the emulated 4G phone, each: open the lobby, consent, wait for the predicted game to be parked, tap. This is the distribution behind the M1/M2 numbers for a correctly predicted launch.</p>
+  <div class="tiles" id="batchtiles"></div>
+  <figure><div id="stripplot"></div><figcaption>Reveal time per session (tap → game frame with Play button), sorted. Also shown: the seconds of lobby time each session needed before the game was ready.</figcaption></figure>
+
+  <h2>4. How often the prediction is right</h2>
+  <p>The model was fitted and replayed on the sample event log (13,682 launches, 65 players, one month). It is causal: every prediction uses only launches that happened before it. Weights were chosen on the first 60 % of the month and the numbers below are from the last 40 %.</p>
+  <div class="two">
+    <div><div class="scroll"><table id="predtable"></table></div></div>
+    <div><div class="scroll"><table id="predbase"></table></div><p class="callout" id="prednote" style="margin-top:14px"></p></div>
+  </div>
+  <h3>What that means for the whole population of launches</h3>
+  <p>Combining the replay with the measured times per state gives a projected tap-to-Play-button distribution over all holdout launches. The gap between consecutive launches in the log decides whether the pre-load had time to finish; the worker keeps a player's last three games on disk, so a relaunch of a recent game is never worse than the prefetched state.</p>
+  <figure><div id="mix"></div><div class="legend" id="mix-legend"></div><figcaption id="mixcap"></figcaption></figure>
+  <div class="scroll"><table id="projtable"></table></div>
+
+  <h2>5. What the player sees</h2>
+  <p>Frames captured by the harness on the emulated 4G phone: the lobby with the predicted game parked behind it, the moment of the tap, and the game with its Play button. There is no blank screen; the poster is on screen within the next frame after the tap on every path.</p>
+  <div class="phonestrip" id="frames"></div>
+
+  <h2 id="realdevice-h">6. Real phone over USB</h2>
+  <div id="realdevice"></div>
+
+  <h2>7. What was changed, and what was not</h2>
+  <ol class="levers" id="levers"></ol>
+  <div class="callout" style="margin-top:18px"><b>Guardrails.</b> The bundle directory is served byte-for-byte under a versioned path; nothing in it was edited. The responsible-gambling gate (self-exclusion register, age verification, reality check) runs before the reveal on every path, including the pre-booted one; the game's own splash and Play button are never auto-clicked. Pre-loading is opt-in per player, never on data saver or 2G, and limited to one pre-booted game with a 10-minute idle limit. Player identifiers stay synthetic in the sandbox; the prediction model lives outside the repository.</div>
+
+  <h2>8. Method and reproduction</h2>
+  <div class="two">
+    <div>
+      <h3>Path of every byte</h3>
+      <p>The edge server (<code>src/edge/server.js</code>) serves the lobby and the untouched bundle from one origin, published through a <code>cloudflared</code> quick tunnel. Chrome 152 is driven over the DevTools protocol with a fresh browser context per run (no HTTP cache, no storage). Link profiles are applied <i>at the origin</i>, per client, because Chrome's own network emulation does not throttle service-worker fetches; the profiles reproduce the baseline's cold numbers.</p>
+      <h3>Clock</h3>
+      <p>All marks are epoch milliseconds, so the lobby and the game frame share one clock. t0 is the <code>pointerdown</code> on the tile. Engine milestones come from the game's own event emitter, hooked from the same-origin lobby before the engine boots.</p>
+    </div>
+    <div>
+      <h3>Commands</h3>
+      <pre class="mono" style="font-size:12.5px;background:var(--bg-2);padding:14px;overflow-x:auto;border:1px solid var(--line);margin:0">node src/edge/server.js --port 8080
+cloudflared tunnel --url http://localhost:8080
+cd scripts/loadtime-harness
+node run-lobby.js --url https://&lt;name&gt;.trycloudflare.com/ \
+  --label after-tunnel-mobile-4g-cpu4-warm-1 \
+  --scenario warm --mobile --net 4g --cpu 4 --headless
+node collect-after.js --shots &amp;&amp; node report-after.js
+node ../../src/predict/build.js   # prediction replay</pre>
+      <p style="margin-top:12px;font-size:13.5px;color:var(--ink-2)">Scenarios: <code>cold</code>, <code>sw-cold</code>, <code>prefetched</code>, <code>warm-light</code>, <code>warm</code>, <code>hot</code>. Raw per-run data (network log, lobby events, screenshots) under <code>scripts/runs/after-*</code>; the merged numbers in <code>progress/runs/2026-09-08-after/after-data.json</code>.</p>
+    </div>
+  </div>
+  <div class="foot" id="foot"></div>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script id="data" type="application/json">/*DATA*/</script>
+<script>
+(() => {
+const D = JSON.parse(document.getElementById('data').textContent);
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmtMs = v => v == null ? '—' : v >= 10000 ? (v / 1000).toFixed(0) + ' s' : v >= 1000 ? (v / 1000).toFixed(1) + ' s' : Math.round(v) + ' ms';
+const fmtS = v => v == null ? '—' : v + ' s';
+const med = arr => { const a = arr.filter(x => x != null).sort((x, y) => x - y); return a.length ? a[Math.floor((a.length - 1) / 2)] : null; };
+const pct = x => x == null ? '—' : (100 * x).toFixed(x < 0.1 ? 1 : 0) + ' %';
+const tip = $('#tip');
+const showTip = (e, txt) => { tip.textContent = txt; tip.hidden = false; const x = Math.min(e.clientX + 14, innerWidth - 360), y = e.clientY + 14; tip.style.left = x + 'px'; tip.style.top = y + 'px'; };
+const hideTip = () => { tip.hidden = true; };
+const cfgs = D.configs.filter(c => c.after && c.after.warm && c.after.warm.length);
+const phone4g = D.configs.find(c => c.key === 'tunnel-mobile-4g-cpu4');
+const desk = D.configs.find(c => c.key === 'tunnel-desktop');
+const p4warm = phone4g ? phone4g.after.warm : [];
+const B = D.batch;
+$('#baselink').href = D.baselineUrl || '#';
+
+// ---- headline ----
+const p4before = med(phone4g.baseline.map(b => b.playbtn_s)); const p4after = med(p4warm.map(r => r.reveal_ms));
+$('#h1').textContent = `Tap to Play button: ${p4before.toFixed(0)} s before, ${Math.round(p4after)} ms after, on the same phone and link`;
+$('#verdict').innerHTML = `<p><strong>Verdict.</strong> When the lobby has pre-loaded the game the player is about to open, the tap reveals a game whose Play button is already on screen: <b>${fmtMs(med(desk.after.warm.map(r => r.reveal_ms)))}</b> on the laptop, <b>${fmtMs(p4after)}</b> on the emulated 4G phone (${B ? 'n=' + B.n + ', p95 ' + fmtMs(B.reveal.p95) : ''}), <b>${fmtMs(med((D.configs.find(c => c.key === 'tunnel-mobile-3g-cpu4').after.warm || []).map(r => r.reveal_ms)))}</b> on 3G. The Play tap then reaches the reels in ${fmtMs(med(p4warm.map(r => r.idle_after_play_ms)))}. Zero bytes cross the network after the tap.</p>
+<p>The honest part: this is the <em>predicted</em> path. The model picks the right next game ${pct(D.prediction.test.top1)} of the time (top-3: ${pct(D.prediction.test.top3)}); a miss on a cold cache still costs the baseline ${fmtMs(med(phone4g.after.cold.map(r => r.playbtn_ms)))} on 4G, a miss on a game already on disk ${fmtMs(med(phone4g.after.prefetched.map(r => r.playbtn_ms)))}. Section 4 turns that into a population-level p50/p95.</p>`;
+
+const tiles = [
+  { k: 'Emulated 4G phone', was: p4before.toFixed(1) + ' s', v: fmtMs(p4after), d: `tap → Play button on screen, median of ${p4warm.length} runs (baseline: median of ${phone4g.baseline.length} cold runs)` },
+  { k: 'Laptop through tunnel', was: med(desk.baseline.map(b => b.playbtn_s)).toFixed(1) + ' s', v: fmtMs(med(desk.after.warm.map(r => r.reveal_ms))), d: 'same path, no throttle' },
+  { k: 'Emulated 3G phone', was: D.configs.find(c => c.key === 'tunnel-mobile-3g-cpu4').baseline[0].playbtn_s + ' s', v: fmtMs(med(D.configs.find(c => c.key === 'tunnel-mobile-3g-cpu4').after.warm.map(r => r.reveal_ms))), d: '1.6 Mbit/s; the pre-load itself took ' + D.configs.find(c => c.key === 'tunnel-mobile-3g-cpu4').after.warm[0].prep_s + ' s of lobby time' },
+  { k: 'Play → reels', was: null, v: fmtMs(med(p4warm.map(r => r.idle_after_play_ms))), d: 'game\'s own Play button to the first idle state, 4G phone' },
+  { k: 'Bytes after the tap', was: (phone4g.baseline[0].mb) + ' MB', v: '0<small>MB</small>', d: `${med(p4warm.map(r => r.req_after_tap))} request(s), all answered by the service worker` },
+  { k: 'Prediction hit rate', was: null, v: pct(D.prediction.test.top1) + '<small>top-1</small>', d: `top-3 ${pct(D.prediction.test.top3)} on ${D.prediction.test.n.toLocaleString()} holdout launches` },
+];
+$('#tiles').innerHTML = tiles.map(t => `<div class="tile"><div class="k">${esc(t.k)}</div><div class="v">${t.was ? '<span class="was">' + esc(t.was) + '</span>' : ''}${t.v}</div><div class="d">${esc(t.d)}</div></div>`).join('');
+$('#tilecap').textContent = 'Struck-through values are the baseline (cold, nothing cached). Phone runs: Pixel 7 profile, DPR 2.625, CPU slowed 4×, origin link 9 Mbit/s + 170 ms RTT (3G: 1.6 Mbit/s + 150 ms).';
+
+// ---- dumbbell (log scale) ----
+(function () {
+  const rows = D.configs.filter(c => c.baseline.length && c.key !== 'direct-desktop');
+  const W = 1040, L = 250, R = 60, T = 26, rowH = 44, H = T + rows.length * rowH + 40;
+  const xmin = Math.log10(1), xmax = Math.log10(200000); const X = v => L + (Math.log10(Math.max(1, v)) - xmin) / (xmax - xmin) * (W - L - R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Before and after per configuration, log scale">`;
+  const ticks = [[1, '1 ms'], [10, '10 ms'], [100, '100 ms'], [1000, '1 s'], [10000, '10 s'], [100000, '100 s']];
+  for (const [v, l] of ticks) s += `<line class="grid" x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${H - 34}"/><text x="${X(v)}" y="${H - 18}" text-anchor="middle" class="mono">${l}</text>`;
+  s += `<line class="target" x1="${X(500)}" x2="${X(500)}" y1="${T - 8}" y2="${H - 34}"/><text x="${X(500) + 5}" y="${T - 10}" class="lbl b">500 ms target</text>`;
+  rows.forEach((c, i) => {
+    const y = T + i * rowH + rowH / 2;
+    const bef = c.baseline.map(b => b.playbtn_s * 1000), aft = (c.after.warm || []).map(r => r.reveal_ms);
+    s += `<text x="${L - 14}" y="${y - 3}" text-anchor="end" class="rowlbl">${esc(c.title)}</text><text x="${L - 14}" y="${y + 12}" text-anchor="end" class="sub">${esc(c.link)}</text>`;
+    if (i) s += `<line class="grid" x1="${L}" x2="${W - R}" y1="${T + i * rowH}" y2="${T + i * rowH}"/>`;
+    const mb = med(bef), ma = med(aft);
+    if (aft.length) { s += `<line class="conn" x1="${X(ma)}" x2="${X(mb)}" y1="${y}" y2="${y}"/>`; }
+    bef.forEach((v, j) => { s += `<circle class="dot-before" cx="${X(v)}" cy="${y}" r="6"/><circle class="hit" cx="${X(v)}" cy="${y}" r="13" data-tip="${esc(c.baseline[j].label)}\nbefore: ${(v / 1000).toFixed(1)} s to Play button\nplayable ${c.baseline[j].playable_s ?? '—'} s · ${c.baseline[j].mb} MB / ${c.baseline[j].req} requests"/>`; });
+    aft.forEach((v, j) => { const r = c.after.warm[j]; s += `<circle class="dot-after" cx="${X(v)}" cy="${y}" r="6"/><circle class="hit" cx="${X(v)}" cy="${y}" r="13" data-tip="${esc(r.label)}\nafter: ${Math.round(v)} ms tap → game with Play button\nprep ${r.prep_s} s · Play→reels ${r.idle_after_play_ms} ms · ${r.req_after_tap} req after tap (${r.req_from_sw} from worker)"/>`; });
+    if (mb != null) s += `<text x="${X(mb) + 11}" y="${y + 4}" class="lbl">${(mb / 1000).toFixed(1)} s</text>`;
+    if (ma != null) s += `<text x="${X(ma) - 11}" y="${y + 4}" text-anchor="end" class="lbl b">${Math.round(ma)} ms</text>`;
+    if (!aft.length) s += `<text x="${L + 6}" y="${y + 4}" class="sub">${esc(c.pending || 'not re-run')}</text>`;
+  });
+  s += `<line class="axis" x1="${L}" x2="${W - R}" y1="${H - 34}" y2="${H - 34}"/></svg>`;
+  $('#dumbbell').innerHTML = s;
+  $('#db-legend').innerHTML = `<span><i style="background:var(--before)"></i>before: open game URL → Play button (cold)</span><span><i style="background:var(--after)"></i>after: tap tile → game frame with Play button (pre-loaded)</span>`;
+})();
+
+// ---- per-config table ----
+(function () {
+  let h = `<tr><th>Configuration</th><th>Run</th><th class="num">Before: Play button</th><th class="num">Before: playable</th><th class="num">Before: MB / req</th><th class="num">After: prep</th><th class="num">After: shell</th><th class="num">After: reveal (Play button ready)</th><th class="num">Play → reels</th><th class="num">Req after tap (worker)</th><th class="num">MB after tap</th></tr>`;
+  for (const c of D.configs) {
+    if (c.key === 'direct-desktop') continue;
+    const n = Math.max(c.baseline.length, (c.after.warm || []).length, 1);
+    h += `<tr class="grp"><td colspan="11">${esc(c.title)} <span class="pill">${esc(c.device)}</span> <span class="pill">${esc(c.link)}</span>${c.note ? ' <span class="sub">' + esc(c.note) + '</span>' : ''}</td></tr>`;
+    if (!(c.after.warm || []).length) { h += `<tr><td></td><td colspan="10" style="color:var(--muted)">${esc(c.pending || 'not re-run')}</td></tr>`; }
+    const nb = c.key === 'tunnel-mobile-4g-cpu4' ? 3 : n;
+    for (let i = 0; i < nb; i++) { const b = c.baseline[i], a = (c.after.warm || [])[i];
+      h += `<tr><td></td><td class="mono">${i + 1}</td><td class="num">${b ? b.playbtn_s + ' s' : '—'}</td><td class="num">${b ? (b.playable_s != null ? b.playable_s + ' s' : '(tap missed)') : '—'}</td><td class="num">${b ? b.mb + ' / ' + b.req : '—'}</td><td class="num">${a ? a.prep_s + ' s' : '—'}</td><td class="num">${a ? fmtMs(a.shell_ms) : '—'}</td><td class="num">${a ? '<b>' + fmtMs(a.reveal_ms) + '</b>' : '—'}</td><td class="num">${a ? fmtMs(a.idle_after_play_ms) : '—'}</td><td class="num">${a ? a.req_after_tap + ' (' + a.req_from_sw + ')' : '—'}</td><td class="num">${a ? a.mb_after_tap : '—'}</td></tr>`; }
+    if (c.key === 'tunnel-mobile-4g-cpu4' && B) h += `<tr><td></td><td class="mono">4–${B.n}</td><td class="num" colspan="3" style="color:var(--muted)">(batch, section 3)</td><td class="num">p50 ${B.prep.p50} s</td><td class="num">p50 ${fmtMs(B.shell.p50)}</td><td class="num"><b>p50 ${fmtMs(B.reveal.p50)} · p95 ${fmtMs(B.reveal.p95)}</b></td><td class="num">p50 ${fmtMs(B.playToIdle.p50)}</td><td class="num">1–2 (all)</td><td class="num">0</td></tr>`;
+    if (c.after.hot) for (const a of c.after.hot) h += `<tr><td></td><td class="mono">hot</td><td class="num" colspan="3" style="color:var(--muted)">back to lobby, tap again</td><td class="num">—</td><td class="num">${fmtMs(a.shell_ms)}</td><td class="num"><b>${fmtMs(a.reveal_ms)}</b> at the reels</td><td class="num">—</td><td class="num">${a.req_after_tap}</td><td class="num">${a.mb_after_tap}</td></tr>`;
+  }
+  $('#cfgtable').innerHTML = h;
+})();
+
+// ---- states bar chart (4G phone) ----
+(function () {
+  const order = [['cold', 'cold: no service worker, nothing cached (the bundle as shipped, through the lobby)'], ['sw-cold', 'first visit: worker installed, cache empty, engine drives the download'], ['prefetched', 'prediction hit, files on disk, engine not booted'], ['warm-light', 'low-memory device: booted to the splash, big atlases held back'], ['warm', 'predicted + pre-booted + parked (steady state)'], ['hot', 'back to the lobby and tap again']];
+  const rows = order.map(([k, l]) => { const rs = phone4g.after[k] || []; const v = k === 'hot' ? med(rs.map(r => r.reveal_ms)) : med(rs.map(r => r.readyBeforeTap ? r.reveal_ms : r.playbtn_ms)); return { k, l, v, n: rs.length, rs }; }).filter(r => r.v != null);
+  const W = 1040, L = 250, R = 90, T = 10, rowH = 40, H = T + rows.length * rowH + 40; const vmax = Math.max(...rows.map(r => r.v)) * 1.05; const X = v => L + v / vmax * (W - L - R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Tap to Play button per state">`;
+  for (let t = 0; t <= vmax; t += 5000) s += `<line class="grid" x1="${X(t)}" x2="${X(t)}" y1="${T}" y2="${H - 34}"/><text x="${X(t)}" y="${H - 18}" text-anchor="middle" class="mono">${t / 1000} s</text>`;
+  rows.forEach((r, i) => { const y = T + i * rowH + 8; const emph = r.k === 'warm' || r.k === 'hot'; const w = Math.max(2, X(r.v) - L);
+    s += `<text x="${L - 14}" y="${y + 12}" text-anchor="end" class="rowlbl">${esc(r.k)}</text><text x="${L - 14}" y="${y + 25}" text-anchor="end" class="sub">${esc(r.l.length > 48 ? r.l.slice(0, 46) + '…' : r.l)}</text>`;
+    s += `<rect class="${emph ? 'bar-emph' : 'bar-ctx'}" x="${L}" y="${y}" width="${w}" height="22" rx="0"/><rect class="hit" x="${L}" y="${y - 4}" width="${W - L}" height="30" data-tip="${esc(r.k)}: ${esc(r.l)}\n${fmtMs(r.v)} tap → Play button (n=${r.n})${r.rs[0] && r.rs[0].prep_s ? '\nprep ' + r.rs[0].prep_s + ' s · ' + r.rs[0].req_after_tap + ' requests after tap (' + r.rs[0].req_from_sw + ' from worker) · ' + r.rs[0].mb_after_tap + ' MB' : ''}"/>`;
+    s += `<text x="${L + w + 8}" y="${y + 15}" class="lbl${emph ? ' b' : ''}">${fmtMs(r.v)}</text>`; });
+  s += `<line class="axis" x1="${L}" x2="${L}" y1="${T}" y2="${H - 34}"/></svg>`;
+  $('#states').innerHTML = s;
+})();
+
+// ---- batch strip plot ----
+(function () {
+  if (!B) { $('#batchtiles').innerHTML = ''; $('#stripplot').innerHTML = '<p class="sub">batch not run</p>'; return; }
+  const nf = (B.failed || []).length;
+  $('#batchtiles').innerHTML = [['Sessions', B.n + (nf ? `<small>+${nf} failed</small>` : ''), 'independent cold-browser sessions, 4G phone' + (nf ? `; ${nf} never reached the parked state (see note)` : '')], ['Reveal p50', fmtMs(B.reveal.p50), 'tap → game frame with Play button'], ['Reveal p95', fmtMs(B.reveal.p95), `max ${fmtMs(B.reveal.max)}`], ['Play → reels p50', fmtMs(B.playToIdle.p50), `p95 ${fmtMs(B.playToIdle.p95)}`], ['Prep p50', B.prep.p50 + '<small>s</small>', `p95 ${B.prep.p95} s of lobby time before the tap (first visit: 23 MB download + engine boot)`]].map(([k, v, d]) => `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join('');
+  if (nf) $('#batchtiles').insertAdjacentHTML('afterend', `<div class="callout warn"><b>${nf} of ${B.n + nf} sessions failed.</b> ${B.failed.map(f => esc(f.label)).join(', ')}: the Cloudflare quick tunnel answered three pre-load requests with HTTP 530 (origin unreachable, transient); the worker correctly refused to cache the error, but the engine's own loader gives up on a failed file, so the game was still booting when the tap came (${B.failed.map(f => f.path).join(', ')}). Counted as a miss, excluded from the percentiles. The worker now retries transient 5xx responses before handing them to the engine.</div>`);
+  const rows = p4warm.filter(r => r.path === 'warm').slice().sort((a, b) => a.reveal_ms - b.reveal_ms);
+  const W = 1040, L = 60, R = 30, T = 16, H = 150; const vmax = Math.max(60, Math.ceil(Math.max(...rows.map(r => r.reveal_ms)) / 10) * 10); const X = v => L + v / vmax * (W - L - R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Reveal time per session">`;
+  for (let t = 0; t <= vmax; t += 10) s += `<line class="grid" x1="${X(t)}" x2="${X(t)}" y1="${T}" y2="${H - 44}"/><text x="${X(t)}" y="${H - 28}" text-anchor="middle" class="mono">${t} ms</text>`;
+  s += `<line class="target" x1="${X(B.reveal.p50)}" x2="${X(B.reveal.p50)}" y1="${T}" y2="${H - 44}"/><text x="${X(B.reveal.p50) + 4}" y="${T + 10}" class="lbl b">p50 ${fmtMs(B.reveal.p50)}</text>`;
+  s += `<line class="target" x1="${X(B.reveal.p95)}" x2="${X(B.reveal.p95)}" y1="${T}" y2="${H - 44}"/><text x="${X(B.reveal.p95) + 4}" y="${T + 24}" class="lbl b">p95 ${fmtMs(B.reveal.p95)}</text>`;
+  rows.forEach((r, i) => { const y = T + 30 + (i % 4) * 14; s += `<circle class="dot-after" cx="${X(r.reveal_ms)}" cy="${y}" r="5"/><circle class="hit" cx="${X(r.reveal_ms)}" cy="${y}" r="12" data-tip="${esc(r.label)}\nreveal ${Math.round(r.reveal_ms)} ms · shell ${Math.round(r.shell_ms)} ms\nPlay→reels ${r.idle_after_play_ms} ms · prep ${r.prep_s} s"/>`; });
+  s += `<text x="${L}" y="${H - 8}" class="sub">${rows.length} sessions; dots are staggered vertically only to keep them apart.</text></svg>`;
+  $('#stripplot').innerHTML = s;
+})();
+
+// ---- prediction tables ----
+(function () {
+  const P = D.prediction; if (!P) return;
+  const row = (k, r) => `<tr><td>${k}</td><td class="num">${pct(r.top1)}</td><td class="num">${pct(r.top3)}</td><td class="num">${r.n.toLocaleString()}</td></tr>`;
+  $('#predtable').innerHTML = `<tr><th>Holdout launches (last 40 % of the month)</th><th class="num">top-1</th><th class="num">top-3</th><th class="num">n</th></tr>` + row('<b>All launches</b>', P.test) + row('First launch of a session', P.byFirst.first) + row('Later launches in a session', P.byFirst.within) + Object.entries(P.byPlatform).map(([k, r]) => row(k, r)).join('') + row('Players with fewer than 5 prior launches', { ...P.coldStart, top3: P.coldStart.top3 });
+  const b = P.baselines;
+  $('#predbase').innerHTML = `<tr><th>Simpler rules, same holdout</th><th class="num">top-1</th><th class="num">top-3</th></tr><tr><td>Always the last game of the session</td><td class="num">${pct(b.lastGame.top1)}</td><td class="num">—</td></tr><tr><td>Player affinity only</td><td class="num">${pct(b.affinityOnly.top1)}</td><td class="num">${pct(b.affinityOnly.top3)}</td></tr><tr><td>Transition matrix only</td><td class="num">${pct(b.transitionOnly.top1)}</td><td class="num">${pct(b.transitionOnly.top3)}</td></tr><tr><td>Popularity only</td><td class="num">${pct(b.popularityOnly.top1)}</td><td class="num">${pct(b.popularityOnly.top3)}</td></tr>`;
+  $('#prednote').innerHTML = `Weights ${esc(JSON.stringify(P.weights))}: same game as last launch, transition matrix from the last game, the player's own history, and global popularity as a tie-breaker. Gap before a launch in the log: p25 ${Math.round(P.gapsSeconds.p25)} s, p50 ${Math.round(P.gapsSeconds.p50)} s, p75 ${Math.round(P.gapsSeconds.p75)} s; first launch comes p50 ${Math.round(P.gapsSeconds.firstLaunchP50)} s after the session starts. The 4G pre-load needs about ${P.measured['phone-4g'].prepFirstVisitS} s on a first visit and ${P.measured['phone-4g'].prepCachedS} s when the files are already on disk.`;
+  // mix chart
+  const sets = [['phone-4g', 'all', 'Emulated 4G phone, 1 warm slot'], ['phone-4g', 'slots3', 'Emulated 4G phone, 3 warm slots (projection)'], ['desktop', 'all', 'Laptop, 1 warm slot'], ['desktop', 'slots3', 'Laptop, 3 warm slots']];
+  const paths = [['hot', 'hot (same game again)'], ['warm', 'warm (pre-booted)'], ['warm-light', 'warm-light'], ['prefetched', 'prefetched (on disk)'], ['cold', 'cold (miss)']]; const cols = ['var(--o1)', 'var(--o2)', 'var(--o3)', 'var(--o4)', 'var(--o5)'];
+  const W = 1040, L = 300, R = 20, T = 6, rowH = 38, H = T + sets.length * rowH + 30; const X = v => L + v * (W - L - R);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Projected launch path mix">`;
+  for (let t = 0; t <= 1.0001; t += 0.25) s += `<text x="${X(t)}" y="${H - 8}" text-anchor="middle" class="mono">${Math.round(t * 100)} %</text>`;
+  sets.forEach(([prof, key, label], i) => { const pr = P.projection[prof][key]; const y = T + i * rowH + 6; let x = 0;
+    s += `<text x="${L - 12}" y="${y + 15}" text-anchor="end" class="rowlbl">${esc(label)}</text>`;
+    paths.forEach(([k, l], j) => { const v = pr.paths[k] || 0; if (!v) return; const x0 = X(x), w = X(x + v) - X(x); s += `<rect x="${x0 + (x ? 1 : 0)}" y="${y}" width="${Math.max(0, w - (x ? 1 : 0) - 1)}" height="22" fill="${cols[j]}"/>`; if (w > 46) s += `<text x="${x0 + w / 2}" y="${y + 15}" text-anchor="middle" style="fill:${j < 2 ? 'var(--ink)' : '#fff'};font-size:11px">${Math.round(v * 100)} %</text>`; s += `<rect class="hit" x="${x0}" y="${y}" width="${w}" height="22" data-tip="${esc(label)}\n${esc(l)}: ${pct(v)}\np50 ${fmtMs(pr.p50)} · p95 ${fmtMs(pr.p95)} · under 500 ms ${pct(pr.under500)}"/>`; x += v; }); });
+  s += `</svg>`;
+  $('#mix').innerHTML = s;
+  $('#mix-legend').innerHTML = paths.map(([k, l], j) => `<span><i class="sq" style="background:${cols[j]}"></i>${esc(l)}</span>`).join('');
+  $('#mixcap').textContent = `Share of holdout launches by the state the tap finds. Ordered fastest (left, lightest) to slowest (right, darkest). Three warm slots is a projection for devices with enough memory (the sandbox has one bundle and one slot).`;
+  const pr = P.projection;
+  const cell = (r, M) => `<td class="num">${fmtMs(M.baselineCold)} → <b>${fmtMs(r.p50)}</b></td><td class="num">${fmtMs(M.baselineCold)} → <b>${fmtMs(r.p95)}</b></td><td class="num">${pct(r.under500)}</td><td class="num">${pct(r.under3s)}</td>`;
+  $('#projtable').innerHTML = `<tr><th>Population projection (holdout launches)</th><th class="num">p50 before → after</th><th class="num">p95 before → after</th><th class="num">under 500 ms</th><th class="num">under 3 s</th></tr>` + sets.map(([prof, key, label]) => `<tr${key === 'all' && prof === 'phone-4g' ? ' class="hl"' : ''}><td>${esc(label)}</td>${cell(pr[prof][key], P.measured[prof])}</tr>`).join('') + `<tr><td>Casino Android launches only, 4G phone, 1 slot</td>${cell(pr['phone-4g'].android, P.measured['phone-4g'])}</tr>`;
+})();
+
+// ---- frames ----
+(function () {
+  const sh = (D.shots || []).filter(s => s.cfg === 'tunnel-mobile-4g-cpu4');
+  const lab = { 'before-tap': 'lobby, game parked behind it', 'L1-final': 'after the Play tap: reels' };
+  $('#frames').innerHTML = sh.length ? sh.map(s => `<div class="frame"><img src="${s.src}" alt="${esc(s.tag)}"><div class="t">${esc(s.tag.replace(/^L1-0*/, '+').replace(/(\d+)$/, '$1 ms'))}</div><div class="l">${esc(lab[s.tag] || 'after the tap')}</div></div>`).join('') : '<p class="sub">frames not embedded</p>';
+})();
+
+// ---- real device ----
+(function () {
+  const wifi = D.configs.find(c => c.key === 'phone-nord3-wifi'), lte = D.configs.find(c => c.key === 'phone-nord3-5g');
+  const have = (wifi.after.warm || []).length || (lte.after.warm || []).length;
+  let h = '';
+  if (!have) h += `<div class="callout warn"><b>Not re-run yet.</b> The OnePlus Nord 3 5G was not connected over USB while this report was generated (${new Date(D.generated).toISOString().slice(11, 16)} UTC). The baseline numbers below stand; the same <code>run-lobby.js --android</code> command reproduces the after-runs once the phone is attached (<code>adb forward tcp:9222 localabstract:chrome_devtools_remote</code>).</div>`;
+  h += `<div class="scroll"><table><tr><th>Network</th><th>Run</th><th class="num">Before: Play button</th><th class="num">Before: playable</th><th class="num">After: prep</th><th class="num">After: reveal</th><th class="num">Play → reels</th></tr>` + [wifi, lte].map(c => c.baseline.map((b, i) => { const a = (c.after.warm || [])[i]; return `<tr><td>${esc(c.link)}</td><td class="mono">${esc(b.label)}</td><td class="num">${b.playbtn_s} s</td><td class="num">${b.playable_s != null ? b.playable_s + ' s' : '(tap search)'}</td><td class="num">${a ? a.prep_s + ' s' : '—'}</td><td class="num">${a ? '<b>' + fmtMs(a.reveal_ms) + '</b>' : '—'}</td><td class="num">${a ? fmtMs(a.idle_after_play_ms) : '—'}</td></tr>`; }).join('')).join('') + `</table></div>`;
+  h += `<p style="margin-top:12px">From the day's beacons, a second physical phone (OnePlus CPH2707, Android 16, its own network, first visit with consent) reached the light state 4.7 s and the fully parked state 9.0 s after opening the lobby, of which 5.8 s was the engine boot overlapped with the 23 MB download.</p>`;
+  $('#realdevice').innerHTML = h;
+})();
+
+// ---- levers ----
+$('#levers').innerHTML = [
+  ['edge', 'Versioned, immutable, compressed origin', 'The bundle is served under <code>/games/empireofgold/&lt;version&gt;/</code> with one-year immutable caching, brotli for every text asset (the 2.2 MB Spine skeleton becomes 98 KB) and Range support for audio. Alone this cannot move a cold load (the link is saturated by 20 MB of PNG and OGG), but it makes every repeat visit free.'],
+  ['service worker', 'Cache-first for game files, with hold and release', 'All <code>/games/*</code> requests are answered from Cache Storage when present, in-flight downloads are de-duplicated, and while a game is pre-booted but not yet shown the worker parks requests outside its critical set (the 19 MB secondary tier), so a warm game costs the 23 MB critical set and nothing more.'],
+  ['prediction', 'Which game to pre-load', 'Offline replay only (<code>src/predict/build.js</code>): a first-order transition matrix, the player\'s own affinity and global popularity, weighted and replayed causally on the sample log: top-1 ' + pct(D.prediction.test.top1) + ', top-3 ' + pct(D.prediction.test.top3) + '. The sandbox holds one certified bundle, so the lobby pre-loads that game; a ranking only matters with a catalogue.'],
+  ['lobby', 'Pre-boot, park, reveal', 'The predicted game boots in a hidden same-origin frame behind the lobby: first to its splash (light), then fully once the download lands. At the Play button the frame is parked with the engine\'s own tab-suspend hook (<code>stopPixiApp</code>: ticker stopped, audio muted). The tap resumes it (<code>startPixiApp</code>) and lifts it in front of the lobby in the next frame. Budget: one warm game, full only on devices reporting 4 GB or more, dropped after 10 min idle or 60 s hidden.'],
+  ['lobby', 'Perceived load on every path', 'Poster, title and a status line are on screen within the next frame after <code>pointerdown</code>, on the cold path too. The blank-screen time of the walkthrough video (21 s) is gone regardless of what the cache holds.'],
+  ['not changed', 'The certified bundle, the game\'s own flow, the RG steps', 'No file in the bundle was edited; the splash and Play button are the game\'s own; register check, age gate and reality check run before any reveal; pre-loading is opt-in.'],
+].map(([w, t, b]) => `<li><div class="where">${esc(w)}</div><div><p><b>${t}</b></p><div class="ev">${b}</div></div></li>`).join('');
+
+$('#foot').textContent = `Generated ${D.generated} from ${D.configs.reduce((n, c) => n + Object.values(c.after).reduce((m, r) => m + r.length, 0), 0)} after-runs and the baseline report data. Harness: scripts/loadtime-harness (run-lobby.js, collect-after.js, report-after.js). Prediction: src/predict/build.js.`;
+
+document.addEventListener('mousemove', e => { const t = e.target.closest && e.target.closest('[data-tip]'); if (t) showTip(e, t.getAttribute('data-tip')); else hideTip(); });
+document.addEventListener('mouseleave', hideTip);
+})();
+</script>

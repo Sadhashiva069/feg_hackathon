@@ -1,0 +1,16 @@
+FEG Innovation Hackathon 2026 submission — Challenge 3 (Game Load Time)
+
+Copyright (c) 2026 the submitting team. All rights reserved.
+
+This repository is submitted for evaluation in the FEG Innovation Hackathon 2026 organised by
+T-Hub and FEG India Solutions. It may be cloned, run and reviewed by the designated T-Hub / FEG
+reviewer accounts solely for hackathon judging and administration, under the FEG Hackathon 2026
+Participant Terms & Submission Guidelines. Any other use, distribution or follow-on engagement is
+subject to a separate written agreement with the team.
+
+Third-party components are used under their own licences, listed in docs/dependencies.md:
+- The game bundle in empireofgold/ is the certified third-party package provided by FEG for this
+  challenge. It is included byte-for-byte and unmodified (tests/bundle-hashes.json) and remains the
+  property of its provider; it is not licensed by this file.
+- Vue.js (src/lobby/vendor/vue.global.prod.js) is MIT licensed, copyright Evan You and contributors.
+- Hackathon datasets and documents are not part of this repository (data/ is git-ignored).

@@ -1,0 +1,6 @@
+{
+  "name": "loadtime-harness",
+  "private": true,
+  "description": "Cold-load measurement harness for the certified game bundle: static origin + cloudflared tunnel + real Chrome over CDP (network, CPU, GPU, engine milestones, trace).",
+  "dependencies": { "playwright-core": "1.55.0" }
+}

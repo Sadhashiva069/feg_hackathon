@@ -1,0 +1,10 @@
+{
+  "empireofgold": {
+    "name": "Empire of Gold",
+    "provider": "SpinIQ",
+    "version": "1788443825853",
+    "dir": "../../empireofgold",
+    "entry": "index.html?language=en",
+    "tile": "assets/images/@0.5x/splashBG.jpg"
+  }
+}

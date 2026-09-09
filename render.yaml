@@ -1,0 +1,30 @@
+# Render blueprint: two copies of the edge, so the /compare page has a real "today" origin next to the accelerated one.
+# New > Blueprint in the Render dashboard, point it at this repo. Region: Singapore (closest to Hyderabad).
+# Free instances spin down after 15 min idle and take ~30-60 s to wake: use "starter" on demo day, or keep them warm.
+services:
+  - type: web
+    name: feg-c3-accelerated
+    runtime: node
+    region: singapore
+    plan: starter
+    branch: main
+    buildCommand: "true"                 # no build step; the edge pre-compresses text assets at start-up
+    startCommand: node src/edge/server.js   # reads PORT from the environment; do not pass --port here
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+  - type: web
+    name: feg-c3-baseline
+    runtime: node
+    region: singapore
+    plan: starter
+    branch: main
+    buildCommand: "true"
+    startCommand: node src/edge/server.js --baseline   # as shipped today: no compression, no cache headers, no worker
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"

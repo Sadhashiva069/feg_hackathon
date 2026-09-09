@@ -1,0 +1,17 @@
+{
+  "name": "feg-hackathon-2026-challenge3-game-load",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FEG Innovation Hackathon 2026, Challenge 3: tap-to-playable for a certified casino game from 6-30 s to under 500 ms without touching the certified bundle (edge + service worker + consented, RG-gated pre-load).",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/edge/server.js --port 8080",
+    "start:baseline": "node src/edge/server.js --port 8081 --baseline",
+    "start:4g": "node src/edge/server.js --port 8080 --throttle 9 --latency 170",
+    "test": "node tests/smoke.js",
+    "verify-bundle": "node tests/verify-bundle.js",
+    "predict": "node src/predict/build.js",
+    "harness:install": "cd scripts/loadtime-harness && npm install"
+  },
+  "license": "SEE LICENSE IN LICENSE"
+}
