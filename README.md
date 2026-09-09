@@ -2,7 +2,7 @@
 
 ## 1. Team, challenge, solution title
 
-- **Team:** Team Cheetahs (members and Team Lead: see the submission form)
+- **Team:** Team Cheetahs
 - **Challenge:** 3, Game Load Time (PSK / Croatian track)
 - **Solution:** *Game Load Accelerator*: tap-to-playable for a certified casino game from 10 s on a laptop over Wi-Fi (25 s on a 4G phone) to under 500 ms on every pre-loaded path (reveal 10 ms p50 / 26 ms p95 on the laptop, 27 / 156 ms on the phone), without changing a byte of the certified bundle and without weakening any responsible-gambling step.
 
