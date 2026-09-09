@@ -138,3 +138,15 @@ Generated with `node scripts/loadtime-harness/summarize-runs.js <prefix> --md`. 
 | none-warm-1 | warm | none | desk |  | 3.2 | 0.9 | 2.8 | 3 | 1.3 | warm | 6 | before | 372 | 1 | 1 | 0 |  |  |  | 2 |
 | wifi-revisit-1 | warm | wifi | desk |  | 9.9 | 0.2 | 0 | 0.6 | 1 | warm | 7 | before | 490 | 0 | 0 | 0 |  |  |  | 4 |
 | wifi-warm-1 | warm | wifi | desk |  | 9 | 2.5 | 7.8 | 8 | 2.9 | warm | 6 | before | 465 | 1 | 1 | 0 | 0.72 | 23.7 | 25.2 | 4 |
+
+## r1- (9 Sep 08:59–09:02, edge deployed on Render, https://feg-hackathon.onrender.com, Singapore; first request after idle took 12.5 s = instance wake-up, then 0.28 s)
+
+| label | scen | net | dev | extras | prep_s | light_s | dl_s | full_s | parked_s | path | reveal_ms | playbtn_ms | idle_ms | req | sw | MB | util | mbit | dlMB | errs |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 4g-swcold-1 | sw-cold | 4g | mob x4 |  | 2.4 |  |  |  |  | cold-sw | 37 | 25227 | 27576 | 77 | 77 | 0 |  |  |  | 3 |
+| 4g-warm-1 | warm | 4g | mob x4 |  | 25 | 8.7 | 22.5 | 23.1 | 9.5 | warm | 29 | before | 1784 | 1 | 1 | 0 |  |  |  | 3 |
+| none-hot-1 | hot | none | desk |  | 7 | 3.6 | 5.7 | 6 | 4 | warm | 6 | before | 390 | 1 | 1 | 0 |  |  |  | 3 |
+| none-revisit-1 | warm | none | desk |  | 11.2 | 0.4 | 0.3 | 0.9 | 1.3 | warm | 6 | before | 386 | 0 | 0 | 0 |  |  |  | 3 |
+| none-warm-1 | warm | none | desk |  | 7.9 | 4.3 | 7 | 7.2 | 4.7 | warm | 6 | before | 380 | 1 | 1 | 0 |  |  |  | 3 |
+| none-warm-2 | warm | none | desk |  | 8.5 | 4.1 | 7 | 7.2 | 4.5 | warm | 5 | before | 554 | 2 | 2 | 0 |  |  |  | 4 |
+| wifi-warm-1 | warm | wifi | desk |  | 9.8 | 4.1 | 8.5 | 8.7 | 4.5 | warm | 5 | before | 367 | 1 | 1 | 0 |  |  |  | 4 |

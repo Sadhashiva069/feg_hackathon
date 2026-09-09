@@ -8,7 +8,31 @@
 
 ## 2. Problem statement
 
-The casino's core loop is choosing and switching games, and every switch costs 6–8 s by FEG's own figure. We measured the delivered bundle (Empire of Gold, 23.4 MB in 63 requests before the first spin, no cache headers) at **8–33 s on a real phone** on the venue network and **25–30 s at 4G speed** on a mid-range profile; the product walkthrough video shows a 41 s black screen after which the presenter gives up. Slow loads suppress discovery: 44.8 % of sessions in the sample log never leave one game, and 10.8 % of launches are the same game re-tapped within a minute. Certified packages cannot be altered, so the load cost cannot be reduced; it can only be paid earlier, paid elsewhere, or hidden.
+The casino's core loop is choosing and switching games, and every switch costs 6–8 s by FEG's own figure. We measured the delivered bundle (Empire of Gold, 23.4 MB in 63 requests before the first spin, no cache headers) at **8–33 s on a real phone** on the venue network and **25–30 s at 4G speed** on a mid-range profile; the organisers' walkthrough videos show a 41 s launch that the presenter abandons (21 s of it black) and a second provider's game taking 20 s on desktop web. Slow loads suppress discovery: 44.8 % of sessions in the sample log never leave one game, and 10.8 % of launches are the same game re-tapped within a minute. Certified packages cannot be altered, so the load cost cannot be reduced; it can only be paid earlier, paid elsewhere, or hidden.
+
+### Baseline evidence (the production site is not reachable from the hackathon)
+
+The PSK casino lobby is VPN-only, so "today" is established from three sources that agree with each other. Every number below is frame-timed or instrumented, not quoted.
+
+| Source | What it shows | Tap → Play button / reels | Black screen |
+|---|---|---|---|
+| `Gaming Casino.mp4` (organisers' walkthrough, desktop Chrome), first launch | tile clicked at 00:37.5 → black → SpinIQ preloader for 15 s → black → presenter back in the lobby at 01:19 **without the game ever appearing** | **41 s, abandoned** | 21 s |
+| same video, second launch (partly warm) | click at 01:22.5 → black → preloader → reels at 01:41.5 | 19 s | 4.5 s |
+| `Web application walkthrough.mp4`, 04:09 (desktop web, **Amusnet** "100 Power Hot Dice", a different provider) | click → black with a spinner for 11 s → provider loader for 8 s → reels at 04:29 | **20 s** | 11 s |
+| Certified bundle served **as shipped** through the same WAN path as our solution (`--baseline` edge, Cloudflare tunnel / Render) | same three screens in the same order as the video; engine milestones logged | 24.7–26.5 s on the 4G phone profile; 8–33 s on a real OnePlus Nord 3; 4–11 s laptop | until the SPLASH phase completes |
+
+Frame strips: `demo/screenshots/today-web-walkthrough-amusnet-20s.jpg` (video) and `demo/screenshots/today-4g-*.jpg` (as-shipped bundle on the 4G profile). The full baseline report with the per-request waterfall, CPU/GPU traces and the byte-floor analysis is `progress/runs/2026-09-08-baseline/report.html` and `progress/BASELINE_LOAD_ANALYSIS.md`. `Mobile View & Native apps.mp4` was scanned frame by frame as well: it covers the sportsbook app only and contains no casino launch, so the phone-side baseline is our own real-device measurement.
+
+**Same device, same link, our solution** (`progress/runs/2026-09-08-after/report.html`):
+
+| Path | Today (as shipped, 4G phone profile) | Accelerator | Raw or perceived |
+|---|---|---|---|
+| Tap → game frame on screen | 21 s black in the video; first pixel after SPLASH | poster + title within the next frame, 19–37 ms on every path | perceived |
+| Tap → Play button, predicted game | 24.7–26.5 s | **27 ms p50 / 156 ms p95** (n = 19), button already on screen | raw |
+| Hot relaunch (back to lobby, tap again) | full reload, 19 s in the video | 5–16 ms | raw |
+| Files on disk, engine not booted (prediction miss on a known game) | 24.7–26.5 s | 2.8 s | raw |
+| Nothing on disk (first-ever visit, or miss on an unknown game) | 24.7–26.5 s | 23–25 s, with the poster instead of black | perceived only: the bytes are the certified bundle's |
+| Play → reels | provider loader 8 s (video) | 10–17 ms | raw |
 
 ## 3. Solution overview and key innovation
 
@@ -24,7 +48,7 @@ Measurement is part of the product: every launch reports `shell`, `reveal`, `pla
 ## 4. Key features / user journey
 
 1. Player opens the lobby. If the account is self-excluded, unverified or over its session limit, a banner says so and nothing is pre-loaded.
-2. Player ticks *"Pre-load the game I am most likely to open next (stores up to ~25 MB on this device)"*, unticked by default, with a plain-language note of what is stored and a *Clear stored files* button.
+2. The pre-load starts on its own the moment the lobby opens (a cache optimisation, on by default). The lobby shows a plain-language switch, *"Pre-load the game I am most likely to open next (on by default; stores up to ~25 MB on this device, switch off any time)"*, and a *Clear stored files* button; the choice is remembered per player.
 3. The worker downloads the predicted game's critical set (23 MB at phone resolution); the lobby boots it hidden, first to the splash, then to the Play button when the rest lands, and parks it.
 4. Player taps the tile: RG gate → reveal → the game's own Play button is already on screen → Play → reels in ~10 ms. On a miss: files on disk 2.8 s; nothing cached 23 s (today's number) with a poster instead of a black screen.
 5. Back to lobby keeps the frame for 5 minutes; a second tap is instant. Reality checks and the session limit interrupt the game at full fidelity, with equal-weight choices.
@@ -56,6 +80,10 @@ None are required. `.env.example` documents `PORT` (edge port, default 8080), `B
 
 ## 9. How to run the prototype
 
+Deployed copy (Render, Singapore): **https://feg-hackathon.onrender.com/?player=demo-player** (accelerated edge; the pre-load starts on open). The instance sleeps when idle and takes up to 15 s to wake on the first request, so open it once before a demo. The compare page needs a second, `--baseline` instance: `render.yaml` defines both services.
+
+Local:
+
 - Lobby: `http://localhost:8080/?player=demo-player` → the pre-load starts on its own → wait for *Warm engine: parked* in the Instrumentation panel (`?debug=1`) → tap the tile.
 - Side by side: `http://localhost:8080/compare?baseline=http://localhost:8081` → wait for the right side to show *pre-loaded · engine parked* → *Open the game on both*.
 - 4G-like conditions on a laptop: `npm run start:4g` (origin throttled to 9 Mbit/s + 170 ms for every client).
@@ -71,7 +99,7 @@ None are required. `.env.example` documents `PORT` (edge port, default 8080), `B
 
 ## 11. Demo instructions
 
-[demo/demo-flow.md](demo/demo-flow.md): a 15-minute script (setup, side-by-side race on a real phone, hot relaunch, guardrails live with `excluded-player`, `limit-player` and `?rc=1`, instrumentation, impact and compliance), with fallbacks. Screenshots of the measured runs are in `demo/screenshots/` (today at 5/11/20/26 s vs accelerator at 172 ms), and the charted matrix is `progress/runs/2026-09-08-after/report.html`.
+[demo/demo-flow.md](demo/demo-flow.md): a 15-minute script (setup, side-by-side race on a real phone, hot relaunch, guardrails live with `excluded-player`, `limit-player` and `?rc=1`, instrumentation, impact and compliance), with fallbacks. Screenshots of the measured runs are in `demo/screenshots/` (today at 5/11/20/26 s vs accelerator at 172 ms, plus the frame strip of the organisers' walkthrough launch), the pitch outline is `demo/presentation/pitch-outline.md`, and the charted matrix is `progress/runs/2026-09-08-after/report.html`.
 
 ## 12. Known limitations, assumptions and future improvements
 
@@ -80,7 +108,7 @@ None are required. `.env.example` documents `PORT` (edge port, default 8080), `B
 - **Prediction is data-limited:** 37 % top-1 / 60 % top-3 on 65 heavy users and 887 games; the sandbox has one bundle, so the lobby only uses "last game" and the ranking model runs offline.
 - **Same-origin assumption:** the bundle must be served from the casino origin (or reverse-proxied under it) for the worker and the pre-boot hook; cross-origin keeps only the edge gains (~1 s repeat loads measured).
 - **Memory:** one fully parked game costs up to +240 MB renderer / +520 MB GPU process on a laptop at @1x; hence one warm game, full only on ≥ 4 GB devices, light otherwise. Real-phone memory (`dumpsys meminfo`) not yet recorded.
-- **Real-phone after-runs** are pending (the baseline was measured on a OnePlus Nord 3; the accelerated matrix is emulated Pixel 7 at 4G/3G plus laptop). The phone demo is live on the day.
+- **Real-phone after-runs** are pending (the baseline was measured on a OnePlus Nord 3; the accelerated matrix is emulated Pixel 7 at 4G/3G plus laptop, and through Render). The phone demo is live on the day. The organisers' mobile walkthrough contains no casino launch, so there is no video baseline for phones either.
 - **Provider assumption:** parked at its own Play button, the engine opens no game session (the sandbox build is offline); to be confirmed with the provider before production. See the hand-over list in the compliance note.
 - Not done: hover/scroll-intent prefetch from search results and category rows (the two surfaces with the most launches), tile-to-frame transition animation, a device-memory probe on Android, an accelerator module extracted from `app.js` with a four-call API (`init`, `plan`, `launch`, `back`).
 
